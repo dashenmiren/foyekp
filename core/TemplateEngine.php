@@ -11,6 +11,7 @@ class TemplateEngine
     private const TEMPLATE_DIR = __DIR__ . '/../config/templates/';
     private const DATA_DIR = __DIR__ . '/../config/data/';
     private const ZHDATA_DIR = __DIR__ . '/../config/zhdata/';
+    private const WENZHANG_DIR = __DIR__ . '/../config/wenzhang/';
     private const FILES_DIR = __DIR__ . '/../public/static/files/';
     private const FILES_DIR1 = __DIR__ . '/../public/static/files1/';
 
@@ -90,6 +91,53 @@ class TemplateEngine
             'callback' => [$this, 'processLocalDataTagCallback']
         ];
     }
+
+    /**
+     * 修改：不再直接处理标签，而是获取随机文章的数据（标题和内容）
+     * @return array ['title' => string, 'content' => string]
+     */
+    private function getRandomArticleData(): array
+    {
+        try {
+            $cacheKey = 'wenzhang_files_list';
+
+            // 检查缓存中是否有文件列表
+            if (!$this->context->hasCache($cacheKey)) {
+                $wenzhangDir = realpath(self::WENZHANG_DIR);
+                if (!$wenzhangDir) {
+                    throw new RuntimeException('WENZHANG_DIR not found: ' . self::WENZHANG_DIR);
+                }
+                
+                $files = glob($wenzhangDir . '/*.txt');
+                if (empty($files)) {
+                    throw new RuntimeException('No .txt files found in WENZHANG_DIR: ' . $wenzhangDir);
+                }
+                
+                // 将文件列表存入缓存
+                $this->context->setCache($cacheKey, $files);
+            }
+
+            $files = $this->context->getCache($cacheKey);
+            if (empty($files)) {
+                throw new RuntimeException('Article file list from cache is empty.');
+            }
+
+            // 随机选择一个文件
+            $randomFile = $files[array_rand($files)];
+            
+            // 返回包含标题和内容的数组
+            return [
+                'title'   => basename($randomFile, '.txt'),
+                'content' => file_get_contents($randomFile) ?: ''
+            ];
+
+        } catch (Throwable $e) {
+            error_log("Error in getRandomArticleData: " . $e->getMessage());
+            // 发生错误时返回空数组，防止后续代码出错
+            return ['title' => '', 'content' => ''];
+        }
+    }
+
     /**
      * 渲染模板 (主入口)
      */
@@ -112,12 +160,23 @@ class TemplateEngine
     private function processTags(string $content): string
     {
         $this->syncLocalDataToRedis();
-        $content = $this->processArticleContent($content);
-
         $content = $this->executeSinglePass($content, $this->loopTagProcessor);
 
         $content = $this->executeRecursivePass($content, $this->combinationTagProcessors);
-
+        // --- 修改：在第二阶段后，同时处理 {wenzhang} 和 {wenzhang_title} ---
+        if (strpos($content, '{wenzhang}') !== false || strpos($content, '{wenzhang_title}') !== false) {
+            // 1. 获取一次文章数据（标题和内容）
+            $articleData = $this->getRandomArticleData();
+            
+            // 2. 定义要查找和替换的标签
+            $search = ['{wenzhang_title}', '{wenzhang}'];
+            $replace = [$articleData['title'], $articleData['content']];
+            
+            // 3. 一次性替换所有相关标签
+            $content = str_replace($search, $replace, $content);
+        }
+        // --- 处理结束 ---
+        
         $content = $this->executeSinglePass($content, $this->simpleTagProcessors);
 
         return $content;
@@ -395,27 +454,7 @@ class TemplateEngine
         }
         return file_get_contents($templatePath) ?: '';
     }
-    private function processArticleContent(string $content): string
-    {
-        try {
-            $redis = $this->context->getRedis();
-            $redis->select($this->context->getConfig()['redis']['databases']['article']);
-            if (strpos($content, '{article_title}') !== false || strpos($content, '{article_content}') !== false) {
-                $articleNum = (int)$redis->get('article_num');
-                if ($articleNum > 0) {
-                    $articleId = mt_rand(1, $articleNum);
-                    $articleData = $redis->hmget("article:$articleId", ['title', 'content']);
-                    $content = str_replace(['{article_title}', '{article_content}'], [$articleData[0] ?? '', $articleData[1] ?? ''], $content);
-                }
-            }
-            if (strpos($content, '{rand_article_title}') !== false) {
-                $content = preg_replace_callback('/{rand_article_title}/', fn() => $redis->sRandMember('article_title_set') ?? '', $content);
-            }
-        } catch (Throwable $e) {
-            error_log("Article error: {$e->getMessage()}");
-        }
-        return $content;
-    }
+
     private function processRandFile(): string
     {
         try {
