@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>《{site_title}》 - {$obj.type.type_name} - 视频详情介绍页 - {$maccms.site_name}</title>
+    <meta name="keywords"
+        content="{$obj.vod_name},{$obj.vod_name}在线观看,{$obj.vod_name}高清在线观看,{$obj.vod_name}手机观看{if !empty($obj.vod_down_list)},{$obj.vod_name}高清下载{/if},{$obj.type.type_name}" />
+    <meta name="description"
+        content="{$obj.vod_name}是由{$obj.vod_director}执导、{$obj.vod_actor|mac_substring=60}主演的电影，在{$obj.vod_year}年上映播出{$obj.vod_content|mac_filter_html|mac_substring=100}{$maccms.site_name}提供了{$obj.vod_name}在线观看，并且还可以支持手机看{$obj.vod_name}，不需要下载播放器，方便广大影迷观看。 " />
+    {php}$tpl_version=20221227;{/php}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="applicable-device" content="pc,mobile">
+    <link rel="shortcut icon" href="{$maccms.path}mb/a_0012_seo/images/favicon.ico?v=<?php echo time();?>" />
+    <script type="text/javascript">
+        var maccms = { "path": "__ROOT__", "mid": "{$maccms['mid']}", "aid": "{$maccms['aid']}", "url": "{$maccms['site_url']}", "wapurl": "{$maccms['site_wapurl']}", "mob_status": "{$maccms['mob_status']}" };
+    </script>
+    <script type="text/javascript" src="{$maccms.path}mb/a_0012_seo/js/jquery.min.js?v=<?php echo time();?>"></script>
+    <script type="text/javascript"
+        src="{$maccms.path}mb/a_0012_seo/js/ewave-plugins.js?v=<?php echo time();?>"></script>
+    <script type="text/javascript" src="{$maccms.path}mb/a_0012_seo/js/ewave-global.js?v=<?php echo time();?>"></script>
+    <script type="text/javascript" src="{$maccms.path}static/js/home.js?v=<?php echo time();?>"></script>
+    <script type="text/javascript" src="{$maccms.path}mb/a_0012_seo/js/ewave-common.js?v=<?php echo time();?>"></script>
+    <script>if (localStorage.theme) { document.documentElement.setAttribute("data-theme", localStorage.theme); } else { document.documentElement.setAttribute("data-theme", ewave_config.theme); }</script>
+    <link rel="stylesheet" type="text/css"
+        href="{$maccms.path}mb/a_0012_seo/css/ewave-plugins.css?v=<?php echo time();?>" />
+    <link rel="stylesheet" type="text/css" href="{$maccms.path}mb/a_0012_seo/css/ewave-ui.css?v=<?php echo time();?>" />
+    <link rel="stylesheet" type="text/css"
+        href="{$maccms.path}mb/a_0012_seo/css/ewave-style.css?v=<?php echo time();?>">
+    <!--高权重SEO代做：foyeseo -->
+    <!--                   _oo9oo_
+                          o9999999o
+                          99" . "99
+                          (| -_- |)
+                          8\  =  /8
+                       ____/`---'\____
+                     .'  \\|     |//  `.
+                    /  \\|||  :  |||//  \
+                   /  _||||| -:- |||||-  \
+                   |   | \\\  -  /// |   |
+                   | \_|   ''\-/''   |   |
+                   \  .-\__  `-`  ___/-. /
+                 ___`. .'  /-.-\  `. . __
+              ."" '<  `.___\_<|>_/___.'  >'"".
+             | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+        ======`-.____`-.___\_____/___.-`____.-'======
+                           `=-='
+    -->
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="a1 clearfix">
+                <a class="logo" href="{$maccms.path}" {if !empty($maccms.site_logo)}
+                    style="background-image:url({$maccms.site_logo|mac_url_img});" {/if}></a>
+                <div class="nav">
+                    <div class="ewave-swiper ewave-swiper-nav">
+                        <div class="swiper-wrapper">
+                            <a class="swiper-slide{if $maccms.aid==1} active{/if}" href="{$maccms.path}">首页</a>
+                            {maccms:type ids="parent" num="10" flag="vod" by="sort" order="asc"}
+                            <a class="swiper-slide{if $GLOBALS.type_id==$vo.type_id||$GLOBALS.type_pid==$vo.type_id} active{/if}"
+                                href="{$vo|mac_url_type}">{$vo.type_name}</a>
+                            {/maccms:type}
+                            {maccms:type ids="parent" num="10" flag="art" by="sort" order="asc"}
+                            <a class="swiper-slide{if $GLOBALS.type_id==$vo.type_id||$GLOBALS.type_pid==$vo.type_id} active{/if}"
+                                href="{$vo|mac_url_type}">{$vo.type_name}</a>
+                            {/maccms:type}
+                            {maccms:type ids="parent" num="10" mid="8" by="sort" order="asc"}
+                            <a class="swiper-slide{if $GLOBALS.type_id==$vo.type_id||$GLOBALS.type_pid==$vo.type_id} active{/if}"
+                                href="{$vo|mac_url_type}">{$vo.type_name}</a>
+                            {/maccms:type}
+                            {if mac_data_count(0,'all','topic') gt 0}
+                            <a class="swiper-slide{if $maccms.mid==3} active{/if}"
+                                href="{:mac_url_topic_index()}">影视专题</a>
+                            {/if}
+                            <a class="swiper-slide{if $label_name=='new'} active{/if}" href="{:mac_url('label/new')}"
+                                title="最近更新">最近更新</a>
+                            <a class="swiper-slide{if $label_name=='ranking'} active{/if}"
+                                href="{:mac_url('label/ranking')}" title="排行榜">排行榜</a>
+                            {if $GLOBALS.config.gbook.status==1}
+                            <a class="swiper-slide{if $maccms.mid==5} active{/if}"
+                                href="{:mac_url('gbook/index')}">留言报错</a>
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="a3">
+                <div class="item nav-m">
+                    <a class="ewave-offcanvas" href="javascript:;" data-target="#nav-m-box"><i
+                            class="fa fa-sliders"></i><span>导航</span></a>
+                    <div class="nav-m-box ewave-offcanvas-content" id="nav-m-box">
+                        <ul class="nav-m-wrapper">
+                            <li><a {if $maccms.aid==1} class="active" {/if} href="{$maccms.path}">首页</a></li>
+                            {maccms:type ids="parent" flag="vod" by="sort" order="asc" id="type" key="key_type"}
+                            {if !empty($type.childids)}
+                            <li
+                                class="ewave-collapse{if $GLOBALS.type_id==$type.type_id||$GLOBALS.type_pid==$type.type_id} active{/if}">
+                                <a class="ewave-collapse-toggle{if $GLOBALS.type_id==$type.type_id} active{/if}"
+                                    href="javascript:;">{$type.type_name}</a>
+                                <div
+                                    class="ewave-collapse-content{if $GLOBALS.type_id==$type.type_id||$GLOBALS.type_pid==$type.type_id} active{/if}">
+                                    {maccms:type ids="child" flag="vod" parent="'.$type['type_id'].'" by="sort"
+                                    order="asc"}
+                                    <a {if $GLOBALS.type_id==$vo.type_id} class="active" {/if}
+                                        href="{$vo|mac_url_type}">{$vo.type_name}</a>
+                                    {/maccms:type}
+                                </div>
+                            </li>
+                            {else/}
+                            <li><a {if $GLOBALS.type_id==$type.type_id} class="active" {/if}
+                                    href="{$type|mac_url_type}">{$type.type_name}</a></li>
+                            {/if}
+                            {/maccms:type}
+                            {maccms:type ids="parent" flag="art" by="sort" order="asc" id="type" key="key_type"}
+                            {if !empty($type.childids)}
+                            <li
+                                class="ewave-collapse{if $GLOBALS.type_id==$type.type_id||$GLOBALS.type_pid==$type.type_id} active{/if}">
+                                <a class="ewave-collapse-toggle{if $GLOBALS.type_id==$type.type_id} active{/if}"
+                                    href="javascript:;">{$type.type_name}</a>
+                                <div
+                                    class="ewave-collapse-content{if $GLOBALS.type_id==$type.type_id||$GLOBALS.type_pid==$type.type_id} active{/if}">
+                                    {maccms:type ids="child" flag="art" parent="'.$type['type_id'].'" by="sort"
+                                    order="asc"}
+                                    <a {if $GLOBALS.type_id==$vo.type_id} class="active" {/if}
+                                        href="{$vo|mac_url_type}">{$vo.type_name}</a>
+                                    {/maccms:type}
+                                </div>
+                            </li>
+                            {else/}
+                            <li><a {if $GLOBALS.type_id==$type.type_id} class="active" {/if}
+                                    href="{$type|mac_url_type}">{$type.type_name}</a></li>
+                            {/if}
+                            {/maccms:type}
+                            {maccms:type ids="parent" mid="8" by="sort" order="asc" id="type" key="key_type"}
+                            {if !empty($type.childids)}
+                            <li
+                                class="ewave-collapse{if $GLOBALS.type_id==$type.type_id||$GLOBALS.type_pid==$type.type_id} active{/if}">
+                                <a class="ewave-collapse-toggle{if $GLOBALS.type_id==$type.type_id} active{/if}"
+                                    href="javascript:;">{$type.type_name}</a>
+                                <div
+                                    class="ewave-collapse-content{if $GLOBALS.type_id==$type.type_id||$GLOBALS.type_pid==$type.type_id} active{/if}">
+                                    {maccms:type ids="child" mid="8" parent="'.$type['type_id'].'" by="sort"
+                                    order="asc"}
+                                    <a {if $GLOBALS.type_id==$vo.type_id} class="active" {/if}
+                                        href="{$vo|mac_url_type}">{$vo.type_name}</a>
+                                    {/maccms:type}
+                                </div>
+                            </li>
+                            {else/}
+                            <li><a {if $GLOBALS.type_id==$type.type_id} class="active" {/if}
+                                    href="{$type|mac_url_type}">{$type.type_name}</a></li>
+                            {/if}
+                            {/maccms:type}
+                            {if mac_data_count(0,'all','topic') gt 0}
+                            <li><a {if $maccms.mid==3} class="active" {/if} href="{:mac_url_topic_index()}">影视专题</a>
+                            </li>
+                            {/if}
+                            <li><a {if $label_name=='new' } class="active" {/if} href="{:mac_url('label/new')}"
+                                    title="最近更新">最近更新</a></li>
+                            <li><a {if $label_name=='ranking' } class="active" {/if} href="{:mac_url('label/ranking')}"
+                                    title="排行榜">排行榜</a></li>
+                            {if $GLOBALS.config.gbook.status==1}
+                            <li><a {if $maccms.mid==5} class="active" {/if} href="{:mac_url('gbook/index')}">留言报错</a>
+                            </li>
+                            {/if}
+                        </ul>
+                    </div>
+                    <div class="ewave-offcanvas-modal"></div>
+                </div>
+                <div class="item js-search">
+                    <a href="javascript:;"><i class="fa fa-search"></i><span>搜索</span></a>
+                </div>
+                <div class="item js-history ewave-history"></div>
+                {if $GLOBALS.config.user.status==1}
+                <div class="item js-user ewave-user"></div>
+                {/if}
+                <div class="item skin-switch">
+                    <a class="light" href="javascript:;" title="切换至亮色模式"><i class="fa fa-sun-o"></i><span>换肤</span></a>
+                    <a class="dark" href="javascript:;" title="切换至暗色模式"><i class="fa fa-moon-o"></i><span>换肤</span></a>
+                </div>
+            </div>
+            <form class="a2 search"
+                action="{if $maccms.mid==2}{:mac_url('art/search')}{elseif $maccms.mid==8/}{:mac_url('actor/search')}{else/}{:mac_url('vod/search')}{/if}">
+                <div class="input clearfix">
+                    <div class="ewave-dropdown ewave-click-dropdown ewave-search-dropdown"> <span
+                            class="ewave-search-dropdown-text">{if $maccms.mid==2}文章{elseif
+                            $maccms.mid==8/}明星{else/}视频{/if}</span>&nbsp;<i class="fa fa-caret-down"></i>
+                        <div class="ewave-dropdown-box">
+                            <ul>
+                                <li data-action="{:mac_url('vod/search')}"><a href="javascript:;">视频</a></li>
+                                <li data-action="{:mac_url('art/search')}"><a href="javascript:;">文章</a></li>
+                                <li data-action="{:mac_url('actor/search')}"><a href="javascript:;">明星</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <input type="text" class="jheader-search-input search-key" placeholder="请输入影片名称" name="wd"
+                        autocomplete="off" required{if $maccms.aid==13||$maccms.aid==23||$maccms.aid==83}
+                        value="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{$param.tag}"
+                        {/if}>
+                    <a href="{:mac_url('label/ranking')}" class="hot"><i class="fa fa-fire"></i>排行榜</a> <button
+                        type="submit" class="btn search-btn"><i class="fa fa-search"></i></button>
+                    {if $maccms.mid!=2 && $maccms.mid!=8}
+                    <div class="hot-list">
+                        <div class="hot-search-list">
+                            <h5 class="title">热门搜索</h5>
+                            {maccms:vod num="10" by="hits_week" order="desc"} <a href="{$vo|mac_url_vod_detail}"
+                                class="hot-item"><span class="order n{$key-1}">{$key}</span><span
+                                    class="hot-word">{$vo.vod_name}</span></a> {/maccms:vod}
+                        </div>
+                    </div>
+                    {/if}
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="header-placeholder gap"></div>
+    <div class="container">
+        <div class="vod-info gap clearfix{if $maccms.aid==15} hidden-lg hidden-xl hidden-xxl{/if}">
+            <div class="pic"><img class="lazyload" src="{$maccms.path}mb/a_0012_seo/images/load.gif"
+                    data-original="{$obj.vod_pic|mac_url_img}"></div>
+            <div class="info">
+                <h3><a href="{$obj|mac_url_vod_detail}" {if !empty($obj.vod_color)} style="color:#{$obj.vod_color};"
+                        {/if}>{$obj.vod_name}</a></h3>
+                <p class="row">
+                    <span class="col-xs-12 col-sm-6 col-md-12 text-overflow">分类：<a
+                            href="{$obj.type|mac_url_type}">{$obj.type.type_name}</a>{if
+                        !empty($obj.vod_class)}{maccms:foreach name=":explode(',',$obj.vod_class)"}<a
+                            href="{:mac_url_type($obj.type,['class'=>$vo],show)}">{$vo}</a>{/maccms:foreach}{/if}</span>
+                    <span class="col-xs-6 col-md-4 text-overflow">地区：{if !empty($obj.vod_area)}{maccms:foreach
+                        name=":explode(',',$obj.vod_area)"}<a
+                            href="{:mac_url_type($obj.type,['area'=>$vo],show)}">{$vo}</a>{/maccms:foreach}{else/}未知{/if}</span>
+                    <span class="col-xs-6 col-md-4 text-overflow">年份：{if !empty($obj.vod_year)}{maccms:foreach
+                        name=":explode(',',$obj.vod_year)"}<a
+                            href="{:mac_url_type($obj.type,['year'=>$vo],show)}">{$vo}</a>{/maccms:foreach}{else/}未知{/if}</span>
+                    <span
+                        class="col-xs-12 col-sm-6 col-md-4 text-overflow">导演：{$obj.vod_director|mac_url_create='director','vod','search',''}</span>
+                    <span class="col-xs-12 text-row text-row-2">主演：{if !empty($obj.vod_actor)}{php}$spliter=array(' / ',
+                        '/', '|', ',', '，', ',,');{/php}{maccms:foreach name=":explode(',',trim(str_replace($spliter,
+                        ',', $obj.vod_actor),','))" id="actor"}{php}$has_actor=0;{/php}{maccms:actor name="'.$actor.'"
+                        num="1" by="time" order="desc"}<a href="{$vo|mac_url_actor_detail}"
+                            target="_blank">{$vo.actor_name}</a>{php}$has_actor=1;{/php}{/maccms:actor}{if
+                        $has_actor==0}<a href="{:mac_url('vod/search',['actor'=>$actor])}"
+                            target="_blank">{$actor}</a>{/if}{/maccms:foreach}{else/}未知{/if}</span>
+                    <span class="col-xs-12">状态：{if ($obj.type.type_id == 1) || ($obj.type_id_1 ==
+                        1)||($obj.type.type_name == '电影') || ($obj.type_1.type_name ==
+                        '电影')}{$obj.vod_remarks|default='高清'}{elseif !empty($obj.vod_remarks)/}{$obj.vod_remarks}{elseif
+                        !empty($obj.vod_serial)/}更新至第{$obj.vod_serial}集{else/}全集{/if}</span>
+                </p>
+                <div class="text text-row text-row-2">简介：{$obj.vod_blurb}</div>
+                <div class="btn-box">{if !empty($obj.vod_play_list) && $maccms.aid!=15 && (empty($obj.vod_copyright) ||
+                    ($GLOBALS.config.app.copyright_status == 0)||($GLOBALS.config.app.copyright_status gt 2))}<a
+                        href="{$obj|mac_url_vod_play}"><i class="fa fa-play-circle-o"></i>立即播放</a>{/if}{if
+                    $GLOBALS.config.user.status==1}<a
+                        class="fav-btn ewave-ulog ewave-ulog-get ewave-ulog-get-{$obj.vod_id}" href="javascript:;"
+                        data-id="{$obj.vod_id}" data-mid="{$maccms.mid}" data-type="2"><i
+                            class="fa fa-heart-o"></i>收藏</a>{/if}</div>
+                <div class="qrcode hidden-xs hidden-sm hidden-md">
+                    <div class="img">
+                        <div class="ewave-qrcode"></div>
+                        <p>手机扫码观看</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vod-bottom pt-10 row">
+            <div class="vod-left col-xs-12 col-xl-9">
+                {if !empty($obj.vod_play_list)}
+                <div class="playlist-box layout-box gap">
+                    {if $obj.vod_copyright eq 1 && $GLOBALS['config']['app']['copyright_status'] elt 2 &&
+                    $GLOBALS['config']['app']['copyright_status'] != 0}
+                    <div class="ewave-copyright-notice">{if !empty($obj.vod_jumpurl)}<a href="{$obj.vod_jumpurl}"
+                            target="_blank">{$GLOBALS['config']['app']['copyright_notice']|default='因版权问题，本站不提供播放'}</a>{else/}{$GLOBALS['config']['app']['copyright_notice']|default='因版权问题，本站不提供播放'}{/if}
+                    </div>
+                    {else/}
+                    <div class="playlist-tab-box">
+                        <h2 class="hidden-xs">播放列表</h2>
+                        <div class="playlist-tab ewave-swiper ewave-swiper-nav">
+                            <ul class="swiper-wrapper">
+                                {php}$playlist_index=1;{/php}
+                                {maccms:foreach name="obj.vod_play_list" id="vo"}
+                                <li class="swiper-slide ewave-tab{if ($maccms.aid==14 && $playlist_index==1) || ($maccms.aid==15 && $vo.sid==$param.sid)} active{/if}"
+                                    data-target="#ewave-playlist-{$vo.sid}">{$vo.player_info.show}<em></em></li>
+                                {php}$playlist_index++;{/php}
+                                {/maccms:foreach}
+                            </ul>
+                        </div>
+                        <div class="right ewave-sort" data-target=".ewave-playlist-sort-content:visible"><span><i
+                                    class="fa fa-sort-amount-asc"></i></span>正序</div>
+                    </div>
+                    <div class="episode-box scrollbar">
+                        {php}$playlist_index=1;{/php}
+                        {maccms:foreach name="obj.vod_play_list" id="vo"}
+                        <ul class="row ewave-tab-content ewave-playlist-content ewave-playlist-sort-content"
+                            id="ewave-playlist-{$vo.sid}" {if ($maccms.aid==14 && $playlist_index==1) ||
+                            ($maccms.aid==15 && $vo.sid==$param.sid)}{else/} style="display:none;" {/if}>
+                            {maccms:foreach name="vo.urls" id="vo2"}
+                            <li
+                                class="col-xs-4 col-sm-3 col-md-2 ewave-playlist-item {if $vo.url_count lt 6} ewave-width-auto{/if}">
+                                <a class="text-overflow{if $maccms.aid==15 && $vo.sid==$param.sid && $vo2.nid==$param.nid} active{/if}"
+                                    href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}">{$vo2.name}</a>
+                            </li>
+                            {/maccms:foreach}
+                        </ul>
+                        {php}$playlist_index++;{/php}
+                        {/maccms:foreach}
+                    </div>
+                    {/if}
+                </div>
+                {/if}
+                {if !empty($obj.vod_down_list) && empty($obj.vod_copyright)}
+                <div class="playlist-box layout-box gap">
+                    <div class="playlist-tab-box">
+                        <h2 class="hidden-xs">下载列表</h2>
+                        <div class="playlist-tab ewave-swiper ewave-swiper-nav">
+                            <ul class="swiper-wrapper">
+                                {php}$downlist_index=1;{/php}
+                                {maccms:foreach name="obj.vod_down_list" id="vo"}
+                                <li class="swiper-slide ewave-tab{if ($maccms.aid==14 && $downlist_index==1) || ($maccms.aid==15 && $vo.sid==$param.sid)} active{/if}"
+                                    data-target="#ewave-downlist-{$vo.sid}">{$vo.player_info.show}<em></em></li>
+                                {php}$downlist_index++;{/php}
+                                {/maccms:foreach}
+                            </ul>
+                        </div>
+                        <div class="right ewave-sort" data-target=".ewave-downlist-sort-content:visible"><span><i
+                                    class="fa fa-sort-amount-asc"></i></span>正序</div>
+                    </div>
+                    <div class="scrollbar">
+                        {php}$downlist_index=1;{/php}
+                        {php}
+                        if (!function_exists('thunderEncode')){
+                        function thunderEncode($str){
+                        $thunderUrl=$str;
+                        if(substr($str,0,10)!='thunder://'){
+                        $thunderUrl='thunder://'.base64_encode('AA'.$str.'ZZ');
+                        }
+                        return $thunderUrl;
+                        }
+                        }
+                        {/php}
+                        {maccms:foreach name="obj.vod_down_list" id="vo"}
+                        <ul class="ewave-tab-content ewave-playlist-content ewave-downlist-content downlist"
+                            id="ewave-downlist-{$vo.sid}" {if ($maccms.aid==14 && $downlist_index==1) ||
+                            ($maccms.aid==16 && $vo.sid==$param.sid)}{else/} style="display:none;" {/if}>
+                            <div class="ewave-downlist-sort-content"> {maccms:foreach name="vo.urls" id="vo2"}
+                                <li class="row ewave-downlist-item-full ewave-xunlei-item">
+                                    <div class="col-xs-1 text-center">
+                                        <input class="ewave-downlist-checkbox" type="checkbox"
+                                            name="downlist-checkbox-{$vo.sid}" value="{$vo2.url}">
+                                    </div>
+                                    <div class="col-xs-6 col-md-7 ewave-downlist-name">
+                                        <div class="ewave-downlist-ep text-overflow"><a href="{$vo2.url}"
+                                                target="_blank">{$vo2.name}</a></div>
+                                        <div class="ewave-downlist-url hidden-xs hidden-sm">
+                                            <input class="form-control" type="text" value="{$vo2.url}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5 col-md-4">
+                                        <div class="ewave-downlist-btns clearfix"><a
+                                                class="btn ewave-downlist-btn btn-theme" rel="nofollow"
+                                                href="{$vo2.url|thunderEncode}" data-name="{$vo2.name}"
+                                                data-url="{$vo2.url}" target="_blank"><span
+                                                    class="hidden-xs">迅雷</span>下载</a><a
+                                                class="btn ewave-downlist-btn ewave-copy" rel="nofollow"
+                                                href="javascript:;" data-text="{$vo2.url}">复制<span
+                                                    class="hidden-xs">链接</span></a></div>
+                                    </div>
+                                </li>
+                                {/maccms:foreach}
+                            </div>
+                            {if $vo.url_count gt 1}
+                            <li class="ewave-downlist-item-full ewave-downlist-tools clearfix"> <a
+                                    class="btn ewave-downlist-btn ewave-downlist-checkall"
+                                    data-target="downlist-checkbox-{$vo.sid}">全选</a> <a
+                                    class="btn ewave-downlist-btn ewave-downlist-download"
+                                    data-target="downlist-checkbox-{$vo.sid}">下载选中资源</a> <a
+                                    class="btn ewave-downlist-btn ewave-downlist-copyall"
+                                    data-target="downlist-checkbox-{$vo.sid}">复制选中资源</a> <a
+                                    class="ewave-downlist-btn text-theme ewave-downlist-tip"
+                                    href="https://www.xunlei.com/" target="_blank"><i
+                                        class="fa fa-warning"></i>&nbsp;下载需要迅雷，点此安装</a> </li>
+                            {/if}
+                        </ul>
+                        {php}$downlist_index++;{/php}
+                        {/maccms:foreach}
+                    </div>
+                </div>
+                {/if}
+                {if !empty($obj.vod_content)}
+                <div class="vod-list layout-box gap">
+                    <h2>内容简介</h2>
+                    <div class="more-box">
+                        <p class="pt-10 pb-10" style="line-height: 2;">
+                            {$obj.vod_name}是由{$obj.vod_director}执导、{$obj.vod_actor|mac_substring=60}主演的电影，在{$obj.vod_year}年上映播出{$obj.vod_content|mac_filter_html|mac_substring=100}{$maccms.site_name}提供了{$obj.vod_name}在线观看，并且还可以支持手机看{$obj.vod_name}，不需要下载播放器，方便广大影迷观看。
+                        </p>
+                    </div>
+                </div>
+                {/if}
+                <div class="vod-list layout-box gap">
+                    <h2>{$obj.vod_name}&nbsp;相关搜索</h2>
+                    <div class="more-box">
+                        <p class="pt-10 pb-10" style="line-height: 2;"><a
+                                href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}爱奇艺在线"
+                                target="_blank" rel="nofollow">{$obj.vod_name}爱奇艺在线</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}优酷在线"
+                                target="_blank" rel="nofollow">{$obj.vod_name}优酷在线</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}西瓜影音"
+                                target="_blank" rel="nofollow">{$obj.vod_name}西瓜影音</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}百度百科"
+                                target="_blank" rel="nofollow">{$obj.vod_name}百度百科</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}预告片"
+                                target="_blank" rel="nofollow">{$obj.vod_name}预告片</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}原著"
+                                target="_blank" rel="nofollow">{$obj.vod_name}原著</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}什么时候播"
+                                target="_blank" rel="nofollow">{$obj.vod_name}什么时候播</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}小说原著"
+                                target="_blank" rel="nofollow">{$obj.vod_name}小说原著</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}在线免费观看"
+                                target="_blank" rel="nofollow">{$obj.vod_name}在线免费观看</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}豆瓣评分"
+                                target="_blank" rel="nofollow">{$obj.vod_name}豆瓣评分</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}演员表"
+                                target="_blank" rel="nofollow">{$obj.vod_name}演员表</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}评价"
+                                target="_blank" rel="nofollow">剧情片{$obj.vod_name}评价</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}结局"
+                                target="_blank" rel="nofollow">{$obj.vod_name}结局</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}说的是什么"
+                                target="_blank" rel="nofollow">电影{$obj.vod_name}说的是什么</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}图片"
+                                target="_blank" rel="nofollow">{$obj.vod_name}图片</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}定档"
+                                target="_blank" rel="nofollow">{$obj.vod_name}定档</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}好看吗"
+                                target="_blank" rel="nofollow">在线电影{$obj.vod_name}好看吗</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}剧情介绍"
+                                target="_blank" rel="nofollow">{$obj.vod_name}剧情介绍</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}幕后花絮"
+                                target="_blank" rel="nofollow">{$obj.vod_name}幕后花絮</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}人物关系"
+                                target="_blank" rel="nofollow">{$obj.vod_name}人物关系</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}角色介绍"
+                                target="_blank" rel="nofollow">{$obj.vod_name}角色介绍</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}上映时间"
+                                target="_blank" rel="nofollow">{$obj.vod_name}上映时间</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={$maccms.site_url}&amp;ct=2097152&amp;wd={$obj.vod_name}迅雷下载地址"
+                                target="_blank" rel="nofollow">{$obj.vod_name}迅雷</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="vod-list layout-box gap">
+                    <h2>{$obj.vod_name}&nbsp;相关问题</h2>
+                    <div class="more-box">
+                        <div class="pt-10 pb-10" style="line-height: 2;">
+                            <p class="mb-0"><b>1、请问哪个平台可以免费在线观看《{$obj.vod_name}》?</b></p>
+                            <p><a href="https://{$maccms.site_url}/">{$maccms.site_name}</a>网友：在线观看地址 <a
+                                    href="http://{$maccms.site_url}{:mac_url_vod_detail($obj)}">http://{$maccms.site_url}{:mac_url_vod_detail($obj)}</a>
+                            </p>
+                            <p class="mb-0"><b>2、《{$obj.vod_name}》是哪些演员主演的？</b></p>
+                            <p>网友：主演有{$obj.vod_actor|mac_substring=60}</p>
+                            <p class="mb-0"><b>3、《{$obj.vod_name}》是什么时候上映/什么时候开播的？</b></p>
+                            <p>网友：{$obj.vod_time|date='Y-m-d h:m:s',###}，详细日期也可以去<a
+                                    href="https://baike.baidu.com/item/{$obj.vod_name}" rel="nofollow">百度百科</a>查询。</p>
+                            <p class="mb-0"><b>4、{$obj.vod_name}如果播放卡顿怎么办？</b></p>
+                            <p><a href="https://tieba.baidu.com/" rel="nofollow">百度贴吧</a>网友：播放页面卡顿可以刷新网页或者更换播放源。</p>
+                            <p class="mb-0"><b>5、手机版免费在线点播《{$obj.vod_name}》哪些网站还有资源？</b></p>
+                            <p>网友：<a href="https://www.mgtv.com/" rel="nofollow">芒果TV</a>、<a
+                                    href="https://www.iqiyi.com/" rel="nofollow">爱奇艺</a>、<a
+                                    href="https://www.youku.com/" rel="nofollow">优酷视频</a>、<a href="https://v.baidu.com/"
+                                    rel="nofollow">百度视频</a></p>
+                            <p class="mb-0"><b>6、《{$obj.vod_name}》的评价：</b></p>
+                            <p><a href="https://www.mtime.com/"
+                                    rel="nofollow">Mtime时光网</a>网友：比第一部好看，剧情不磨叽了，主要角色不拖后腿。第一次看到胡子拉碴的主角直接就爱了。{$obj.vod_name}电影懂得扬长避短，让声音做主角。省去没人想看的废话，省去没人想看的感情戏，一个火球交代了背景设定。一切以场景为中心来设计，而每个场景又都以声音为中心，咋呼、轻响、寂静形成节奏，然后一秒钟不多待就出字幕。很少有电影的音效师能感觉自己这么核心吧？
+                            </p>
+                            <p><a href="https://v.baidu.com/" rel="nofollow">百度视频</a>网友:电影前的回忆闪回让观众们完美过渡 没看过前作的朋友也毫无压力
+                                相比第一部演员有所升级</p>
+                            <p><a href="https://movie.douban.com/"
+                                    rel="nofollow">豆瓣电影</a>网友：《{$obj.vod_name}》观感太割裂了，一边频频被视觉设计上的创意惊艳到，一边又不知道导演在吃力地表达什么！首先要说明一点，抛开所有片外因素，这部片子我看得很爽。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vod-list layout-box gap pb-0">
+                    <h2>猜你喜欢</h2>
+                    <div class="more-box">
+                        <ul class="row">
+                            {php}
+                            $related_num=12;
+                            $rel_num=0;
+                            $my_key=1;
+                            $related_id=$obj['vod_id'];
+                            if (!empty($obj['vod_rel_vod'])){
+                            $rel_num=count(explode(',',trim($obj['vod_rel_vod'],',')));
+                            if ($rel_num > $related_num) {
+                            $rel_num=$related_num;
+                            }
+                            $related_num-=$rel_num;
+                            }
+                            {/php}
+                            {if !empty($rel_num)}
+                            {maccms:vod num="'.$rel_num.'" rel="'.$obj['vod_rel_vod'].'" foyeseo="1"}
+                            {if $vo.vod_id != $obj.vod_id}
+                            <li
+                                class="col-xs-4 col-md-3 col-xl-2{if $my_key gt 6} hidden-xs hidden-sm{/if}{if $my_key gt 8} hidden-md hidden-lg{/if}">
+                                {include file="block/vod_item"}</li>
+                            {php}$related_id.=",".$vo['vod_id'];$my_key++;{/php}
+                            {else/}
+                            {php}$rel_num--;$related_num++;{/php}
+                            {/if}
+                            {/maccms:vod}
+                            {/if}
+                            {if !empty($related_num)}
+                            {maccms:vod num="'.$related_num.'" not="'.$related_id.'" type="current" by="hits_week"
+                            order="desc" foyeseo="1"}
+                            <li
+                                class="col-xs-4 col-md-3 col-xl-2{if $my_key gt 6} hidden-xs hidden-sm{/if}{if $my_key gt 8} hidden-md hidden-lg{/if}">
+                                {include file="block/vod_item"}</li>
+                            {php}$related_id.=",".$vo['vod_id'];$rel_num++;$related_num--;$my_key++;{/php}
+                            {/maccms:vod}
+                            {/if}
+                            {if !empty($related_num)}
+                            {maccms:vod num="'.$related_num.'" not="'.$related_id.'" by="hits_week" order="desc"
+                            foyeseo="1"}
+                            <li
+                                class="col-xs-4 col-md-3 col-xl-2{if $my_key gt 6} hidden-xs hidden-sm{/if}{if $my_key gt 8} hidden-md hidden-lg{/if}">
+                                {include file="block/vod_item"}</li>
+                            {php}$related_id.=",".$vo['vod_id'];$rel_num++;$related_num--;$my_key++;{/php}
+                            {/maccms:vod}
+                            {/if}
+                        </ul>
+                    </div>
+                </div>
+                {if !empty($obj.vod_rel_art)}
+                <div class="layout-box clearfix gap">
+                    <div class="art-box">
+                        <h2>相关资讯</h2>
+                        <ul class="art-list clearfix">
+                            {maccms:art ids="'.$obj['vod_rel_art'].'" by="time" order="desc"}
+                            {include file="block/art_item"}
+                            {/maccms:art}
+                        </ul>
+                    </div>
+                </div>
+                {/if}
+                {if $GLOBALS.config.comment.status==1}
+                <div class="comment-box layout-box gap">
+                    <div class="comment-list">
+                        <h2 class="gap">用户评论</h2>
+                        <div class="ewave-comment"
+                            data-id="{$obj.vod_id}{$obj.art_id}{$obj.actor_id}{$obj.role_id}{$obj.website_id}{$obj.topic_id}"
+                            data-mid="{$maccms.mid}">
+                            <div class="ewave-empty"><i class="fa fa-refresh fa-spin"></i>&nbsp;正在加载</div>
+                        </div>
+                        <script>
+                            $(function () {
+                                eWave.Comment.Login = { $comment.login };
+                            });
+                        </script>
+                    </div>
+                </div>
+                {/if}
+            </div>
+            <div class="vod-right col-xs-12 col-xl-3 ewave-sticky hidden-xs hidden-sm hidden-md hidden-lg">
+                <div class="layout-box clearfix gap">
+                    <div class="hot">
+                        <h2>{$obj.type.type_name}排行榜</h2>
+                        <ul class="ranking-list">
+                            {maccms:vod type="current" num="10" by="hits_week" order="desc"}
+                            <li class="ranking-item">{include file="block/vod_item_ranking"}</li>
+                            {/maccms:vod}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="container">
+            <p class="hidden-xs"> <a href="{:mac_url('label/new')}">最新更新</a> <i>|</i> <a
+                    href="{:mac_url('map/index')}">网站地图</a> <i>|</i> <a href="{:mac_url('rss/index')}">RSS订阅</a>
+                <i>|</i> <a href="{:mac_url('rss/baidu')}">百度蜘蛛</a> <i>|</i> <a href="{:mac_url('rss/google')}">谷歌地图</a>
+                <i>|</i> <a href="{:mac_url('rss/bing')}">必应地图</a> <i>|</i> <a href="{:mac_url('rss/360')}">360地图</a>
+                <i>|</i> <a href="{:mac_url('rss/sogou')}">搜狗地图</a> <i>|</i> <a href="{:mac_url('rss/sm')}">神马爬虫</a>
+            </p>
+            <p>本站所有视频和图片均来自互联网收集而来，版权归原创者所有，本网站只提供web页面服务，并不提供资源存储，也不参与录制</p>
+            <p>Copyright © {:date(Y)} {$maccms.site_name}({$maccms.site_url}) All Rights Reserved</p>
+        </div>
+    </div>
+    <div class="fixedbar-fixed-bar">
+        <div class="ant-back-top"> <i class="fa fa-angle-up"></i> <span class="fixedbar-top">顶部</span> <a
+                href="javascript:void(0);" class="fixedbar-top-link"></a> </div>
+        <div class="type hidden-xs hidden-sm hidden-md">
+            {maccms:type ids="parent" flag="vod" by="sort" order="asc"}
+            <a href="javascript:void(0);" class="fixedbar-anchor-text"
+                data-id="#index-vod-{$vo.type_id}">{$vo.type_name}</a>
+            {/maccms:type}
+            {if mac_data_count(0,'all','actor') gt 0}
+            <a href="javascript:void(0);" class="fixedbar-anchor-text" data-id="#index-actor">明星库</a>
+            {/if}
+            {maccms:type ids="parent" flag="art" by="sort" order="asc"}
+            <a href="javascript:void(0);" class="fixedbar-anchor-text"
+                data-id="#index-art-{$vo.type_id}">{$vo.type_name}</a>
+            {/maccms:type}
+            {if mac_data_count(0,'all','topic') gt 0}
+            <a href="javascript:void(0);" class="fixedbar-anchor-text" data-id="#index-topic">精彩专题</a>
+            {/if}
+        </div>
+        <div class="skin-switch">
+            <a class="light" href="javascript:;" title="切换至亮色模式"><span class="fa fa-sun-o"></span></a>
+            <a class="dark" href="javascript:;" title="切换至暗色模式"><span class="fa fa-moon-o"></span></a>
+        </div>
+    </div>
+    <div style="display:none;">{$maccms.site_tj}</div>
+    <script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+    <span class="mac_hits hide" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-type="insert"></span>
+    <span class="mac_ulog_set hide" data-type="4" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid=""
+        data-nid=""></span>
+</body>
+
+</html>

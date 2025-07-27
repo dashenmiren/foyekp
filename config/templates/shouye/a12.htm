@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>《{site_title}》</title>
+    <meta name="keywords" content="{site_keywords}-{keyword}" />
+    <meta name="description" content="{site_description}-{keyword}" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="applicable-device" content="pc,mobile">
+    <link rel="shortcut icon"
+        href="/static/0012/images/favicon.ico?v={timestamp_day}{timestamp_hour}{timestamp_minute}" />
+
+    <script type="text/javascript"
+        src="/static/0012/js/jquery.min.js?v={timestamp_day}{timestamp_hour}{timestamp_minute}"></script>
+    <script type="text/javascript"
+        src="/static/0012/js/ewave-plugins.js?v={timestamp_day}{timestamp_hour}{timestamp_minute}"></script>
+    <script type="text/javascript"
+        src="/static/0012/js/ewave-global.js?v={timestamp_day}{timestamp_hour}{timestamp_minute}"></script>
+    <script type="text/javascript"
+        src="/static/0012/js/ewave-common.js?v={timestamp_day}{timestamp_hour}{timestamp_minute}"></script>
+
+    <link rel="stylesheet" type="text/css"
+        href="/static/0012/css/ewave-plugins.css?v={timestamp_day}{timestamp_hour}{timestamp_minute}" />
+    <link rel="stylesheet" type="text/css"
+        href="/static/0012/css/ewave-ui.css?v={timestamp_day}{timestamp_hour}{timestamp_minute}" />
+    <link rel="stylesheet" type="text/css"
+        href="/static/0012/css/ewave-style.css?v={timestamp_day}{timestamp_hour}{timestamp_minute}">
+    <!--高权重SEO代做：foyeseo -->
+    <!--                   _oo9oo_
+                          o9999999o
+                          99" . "99
+                          (| -_- |)
+                          8\  =  /8
+                       ____/`---'\____
+                     .'  \\|     |//  `.
+                    /  \\|||  :  |||//  \
+                   /  _||||| -:- |||||-  \
+                   |   | \\\  -  /// |   |
+                   | \_|   ''\-/''   |   |
+                   \  .-\__  `-`  ___/-. /
+                 ___`. .'  /-.-\  `. . __
+              ."" '<  `.___\_<|>_/___.'  >'"".
+             | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+        ======`-.____`-.___\_____/___.-`____.-'======
+                           `=-='
+    -->
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="a1 clearfix">
+                <a class="logo" href="/" style="background-image:url(/static/0012/images/logo.png);"></a>
+                <div class="nav">
+                    <div class="ewave-swiper ewave-swiper-nav">
+                        <div class="swiper-wrapper">
+                            <a class="swiper-slide active" href="/">首页</a>
+                            <a class="swiper-slidea" href="/type/{string=6}.html">{rand_keyword}</a>
+                            <a class="swiper-slidea" href="/type/{string=6}.html">{rand_keyword}</a>
+                            <a class="swiper-slidea" href="/type/{string=6}.html">{rand_keyword}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="a3">
+                <div class="item skin-switch">
+                    <a class="light" href="javascript:;" title="切换至亮色模式"><i class="fa fa-sun-o"></i><span>换肤</span></a>
+                    <a class="dark" href="javascript:;" title="切换至暗色模式"><i class="fa fa-moon-o"></i><span>换肤</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-placeholder gap"></div>
+    <div class="container">
+        <div class="vod-info gap ">
+            <div class="pic"><img class="lazyload" src="/static/0012/images/load.gif" data-original="{rand_file}"></div>
+            <div class="info">
+                <h3><a href="#" style="color:#{digits=6};">{keyword}</a></h3>
+                <p class="row">
+                    <span class="col-xs-12 col-sm-6 col-md-12 text-overflow">分类：
+                        <a href="/type/{string=6}.html">{rand_prefix}</a></span>
+                    <span class="col-xs-6 col-md-4 text-overflow">地区：
+                        <a href="/type/{string=6}.html">{rand_prefix}</a></span>
+                    <span class="col-xs-6 col-md-4 text-overflow">年份：
+                        <a href="/type/{string=6}.html">{timestamp_year}</a></span>
+                    <span class="col-xs-12 col-sm-6 col-md-4 text-overflow">导演：
+                        {rand_prefix}</span>
+                    <span class="col-xs-12 text-row text-row-2">主演：
+                        {rand_prefix} - {rand_prefix} - {rand_prefix} - {rand_prefix}</span>
+                    <span class="col-xs-12">状态：
+                        {rand_prefix}</span>
+                </p>
+                <div class="text text-row text-row-2">简介：{description}</div>
+                <div class="btn-box"><a href="/play/{string=6}.html"><i class="fa fa-play-circle-o"></i>立即播放</a><a
+                        class="fav-btn ewave-ulog ewave-ulog-get ewave-ulog-get-{digits=4}" href="javascript:;"><i
+                            class="fa fa-heart-o"></i>收藏</a></div>
+                <div class="qrcode hidden-xs hidden-sm hidden-md">
+                    <div class="img">
+                        <div class="ewave-qrcode"></div>
+                        <p>手机扫码观看</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vod-bottom pt-10 row">
+            <div class="vod-left col-xs-12 col-xl-9">
+                <div class="playlist-box layout-box gap">
+                    <div class="playlist-tab-box">
+                        <h2 class="hidden-xs">播放列表</h2>
+                        <div class="playlist-tab ewave-swiper ewave-swiper-nav">
+                            <ul class="swiper-wrapper">
+                                <li class="swiper-slide ewave-tab active" data-target="#ewave-playlist-1">播放源<em></em>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="right ewave-sort" data-target=".ewave-playlist-sort-content:visible"><span><i
+                                    class="fa fa-sort-amount-asc"></i></span>正序</div>
+                    </div>
+                    <div class="episode-box scrollbar">
+                        <ul class="row ewave-tab-content ewave-playlist-content ewave-playlist-sort-content"
+                            id="ewave-playlist-{digits=2}">
+                            <li class="col-xs-4 col-sm-3 col-md-2 ewave-playlist-item ewave-width-auto">
+                                <a class="text-overflow active" href="/play/{string=6}.html">第一集</a>
+                            </li>
+                            <li class="col-xs-4 col-sm-3 col-md-2 ewave-playlist-item ewave-width-auto">
+                                <a class="text-overflow active" href="/play/{string=6}.html">第二集</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="playlist-box layout-box gap">
+                    <div class="playlist-tab-box">
+                        <h2 class="hidden-xs">下载列表</h2>
+                        <div class="playlist-tab ewave-swiper ewave-swiper-nav">
+                            <ul class="swiper-wrapper">
+                                <li class="swiper-slide ewave-tab active" data-target="#ewave-downlist-1">下载源<em></em>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="right ewave-sort" data-target=".ewave-downlist-sort-content:visible"><span><i
+                                    class="fa fa-sort-amount-asc"></i></span>正序</div>
+                    </div>
+                    <div class="scrollbar">
+                        <ul class="ewave-tab-content ewave-playlist-content ewave-downlist-content downlist"
+                            id="ewave-downlist-{digits=2}">
+                            <div class="ewave-downlist-sort-content">112233
+                                <li class="row ewave-downlist-item-full ewave-xunlei-item">
+                                    <div class="col-xs-1 text-center">
+                                        <input class="ewave-downlist-checkbox" type="checkbox"
+                                            name="downlist-checkbox-{digits=2}" value="/down/{string=12}">
+                                    </div>
+                                    <div class="col-xs-6 col-md-7 ewave-downlist-name">
+                                        <div class="ewave-downlist-ep text-overflow"><a href="/down/{string=12}"
+                                                target="_blank">第一集</a></div>
+                                        <div class="ewave-downlist-url hidden-xs hidden-sm">
+                                            <input class="form-control" type="text" value="/down/{string=12}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5 col-md-4">
+                                        <div class="ewave-downlist-btns clearfix"><a
+                                                class="btn ewave-downlist-btn btn-theme" rel="nofollow"
+                                                href="/down/{string=12}" data-name="第一集" data-url="/down/{string=12}"
+                                                target="_blank"><span class="hidden-xs">迅雷</span>下载</a><a
+                                                class="btn ewave-downlist-btn ewave-copy" rel="nofollow"
+                                                href="javascript:;" data-text="/down/{string=12}">复制<span
+                                                    class="hidden-xs">链接</span></a></div>
+                                    </div>
+                                </li>
+                            </div>
+                            <li class="ewave-downlist-item-full ewave-downlist-tools clearfix"> <a
+                                    class="btn ewave-downlist-btn ewave-downlist-checkall"
+                                    data-target="downlist-checkbox-{digits=2}">全选</a> <a
+                                    class="btn ewave-downlist-btn ewave-downlist-download"
+                                    data-target="downlist-checkbox-{digits=2}">下载选中资源</a> <a
+                                    class="btn ewave-downlist-btn ewave-downlist-copyall"
+                                    data-target="downlist-checkbox-{digits=2}">复制选中资源</a> <a
+                                    class="ewave-downlist-btn text-theme ewave-downlist-tip"
+                                    href="https://www.xunlei.com/" target="_blank"><i
+                                        class="fa fa-warning"></i>&nbsp;下载需要迅雷，点此安装</a> </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                {var1}
+                <div class="vod-list layout-box gap">
+                    <h2>内容简介</h2>
+                    <div class="more-box">
+                        <p class="pt-10 pb-10" style="line-height: 2;">
+                            {keyword}是由{rand_keyword}执导、{rand_keyword}主演的电影，在{timestamp_year}年上映播出{rand_keyword}提供了{keyword}在线观看，并且还可以支持手机看{keyword}，不需要下载播放器，方便广大影迷观看。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="vod-list layout-box gap">
+                    <h2>{keyword}&nbsp;相关搜索</h2>
+                    <div class="more-box">
+                        <p class="pt-10 pb-10" style="line-height: 2;"><a
+                                href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}爱奇艺在线"
+                                target="_blank" rel="nofollow">{keyword}爱奇艺在线</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}优酷在线"
+                                target="_blank" rel="nofollow">{keyword}优酷在线</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}西瓜影音"
+                                target="_blank" rel="nofollow">{keyword}西瓜影音</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}百度百科"
+                                target="_blank" rel="nofollow">{keyword}百度百科</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}预告片"
+                                target="_blank" rel="nofollow">{keyword}预告片</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}原著"
+                                target="_blank" rel="nofollow">{keyword}原著</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}什么时候播"
+                                target="_blank" rel="nofollow">{keyword}什么时候播</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}小说原著"
+                                target="_blank" rel="nofollow">{keyword}小说原著</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}在线免费观看"
+                                target="_blank" rel="nofollow">{keyword}在线免费观看</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}豆瓣评分"
+                                target="_blank" rel="nofollow">{keyword}豆瓣评分</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}演员表"
+                                target="_blank" rel="nofollow">{keyword}演员表</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}评价"
+                                target="_blank" rel="nofollow">剧情片{keyword}评价</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}结局"
+                                target="_blank" rel="nofollow">{keyword}结局</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}说的是什么"
+                                target="_blank" rel="nofollow">电影{keyword}说的是什么</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}图片"
+                                target="_blank" rel="nofollow">{keyword}图片</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}定档"
+                                target="_blank" rel="nofollow">{keyword}定档</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}好看吗"
+                                target="_blank" rel="nofollow">在线电影{keyword}好看吗</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}剧情介绍"
+                                target="_blank" rel="nofollow">{keyword}剧情介绍</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}幕后花絮"
+                                target="_blank" rel="nofollow">{keyword}幕后花絮</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}人物关系"
+                                target="_blank" rel="nofollow">{keyword}人物关系</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}角色介绍"
+                                target="_blank" rel="nofollow">{keyword}角色介绍</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}上映时间"
+                                target="_blank" rel="nofollow">{keyword}上映时间</a>&nbsp;
+                            <a href="https://www.baidu.com/s?ie=utf-8&amp;si={site_url}&amp;ct=2097152&amp;wd={keyword}迅雷下载地址"
+                                target="_blank" rel="nofollow">{keyword}迅雷</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="vod-list layout-box gap">
+                    <h2>{keyword}&nbsp;相关问题</h2>
+                    <div class="more-box">
+                        <div class="pt-10 pb-10" style="line-height: 2;">
+                            <p class="mb-0"><b>1、请问哪个平台可以免费在线观看《{keyword}》?</b></p>
+                            <p><a href="/">{site_title}</a>网友：在线观看地址 <a href="/vod/{string=8}.html">{site_title}</a>
+                            </p>
+                            <p class="mb-0"><b>2、《{keyword}》是哪些演员主演的？</b></p>
+                            <p>网友：主演有{rand_prefix}</p>
+                            <p class="mb-0"><b>3、《{keyword}》是什么时候上映/什么时候开播的？</b></p>
+                            <p>网友：{timestamp_year}-{timestamp_month}-{timestamp_day}，详细日期也可以去<a
+                                    href="https://baike.baidu.com/item/{keyword}" rel="nofollow">百度百科</a>查询。</p>
+                            <p class="mb-0"><b>4、{keyword}如果播放卡顿怎么办？</b></p>
+                            <p><a href="https://tieba.baidu.com/" rel="nofollow">百度贴吧</a>网友：播放页面卡顿可以刷新网页或者更换播放源。</p>
+                            <p class="mb-0"><b>5、手机版免费在线点播《{keyword}》哪些网站还有资源？</b></p>
+                            <p>网友：<a href="https://www.mgtv.com/" rel="nofollow">芒果TV</a>、<a
+                                    href="https://www.iqiyi.com/" rel="nofollow">爱奇艺</a>、<a
+                                    href="https://www.youku.com/" rel="nofollow">优酷视频</a>、<a href="https://v.baidu.com/"
+                                    rel="nofollow">百度视频</a></p>
+                            <p class="mb-0"><b>6、《{keyword}》的评价：</b></p>
+                            <p><a href="https://www.mtime.com/"
+                                    rel="nofollow">Mtime时光网</a>网友：比第一部好看，剧情不磨叽了，主要角色不拖后腿。第一次看到胡子拉碴的主角直接就爱了。{keyword}电影懂得扬长避短，让声音做主角。省去没人想看的废话，省去没人想看的感情戏，一个火球交代了背景设定。一切以场景为中心来设计，而每个场景又都以声音为中心，咋呼、轻响、寂静形成节奏，然后一秒钟不多待就出字幕。很少有电影的音效师能感觉自己这么核心吧？
+                            </p>
+                            <p><a href="https://v.baidu.com/" rel="nofollow">百度视频</a>网友:电影前的回忆闪回让观众们完美过渡 没看过前作的朋友也毫无压力
+                                相比第一部演员有所升级</p>
+                            <p><a href="https://movie.douban.com/"
+                                    rel="nofollow">豆瓣电影</a>网友：《{keyword}》观感太割裂了，一边频频被视觉设计上的创意惊艳到，一边又不知道导演在吃力地表达什么！首先要说明一点，抛开所有片外因素，这部片子我看得很爽。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vod-list layout-box gap pb-0">
+                    <h2>猜你喜欢</h2>
+                    <div class="more-box">
+                        <ul class="row">
+                            <li class="col-xs-4 col-md-3 col-xl-2">
+                                <div class="{alpha_numeric=5} pic"><a href="/vod/{string=6}.html" title="{rand_keyword}">
+                                        <div class="{alpha_numeric=5} img-wrapper lazyload img-wrapper-pic"
+                                            data-original="{rand_file}" data-background="{rand_file}"
+                                            style="background-image: url({rand_file});"></div>
+                                    </a></div>
+                                <div class="{alpha_numeric=5} name">
+                                    <h3><a href="/vod/{string=6}.html" title="{rand_keyword}">{rand_keyword}</a></h3>
+                                    <p class="item-status text-overflow">更新至{digits=2}集</p>
+                                </div>
+                            </li>
+                            <li class="col-xs-4 col-md-3 col-xl-2">
+                                <div class="{alpha_numeric=5} pic"><a href="/vod/{string=6}.html" title="{rand_keyword}">
+                                        <div class="{alpha_numeric=5} img-wrapper lazyload img-wrapper-pic"
+                                            data-original="{rand_file}" data-background="{rand_file}"
+                                            style="background-image: url({rand_file});"></div>
+                                    </a></div>
+                                <div class="{alpha_numeric=5} name">
+                                    <h3><a href="/vod/{string=6}.html" title="{rand_keyword}">{rand_keyword}</a></h3>
+                                    <p class="item-status text-overflow">更新至{digits=2}集</p>
+                                </div>
+                            </li>
+                            <li class="col-xs-4 col-md-3 col-xl-2">
+                                <div class="{alpha_numeric=5} pic"><a href="/vod/{string=6}.html" title="{rand_keyword}">
+                                        <div class="{alpha_numeric=5} img-wrapper lazyload img-wrapper-pic"
+                                            data-original="{rand_file}" data-background="{rand_file}"
+                                            style="background-image: url({rand_file});"></div>
+                                    </a></div>
+                                <div class="{alpha_numeric=5} name">
+                                    <h3><a href="/vod/{string=6}.html" title="{rand_keyword}">{rand_keyword}</a></h3>
+                                    <p class="item-status text-overflow">更新至{digits=2}集</p>
+                                </div>
+                            </li>
+                            <li class="col-xs-4 col-md-3 col-xl-2">
+                                <div class="{alpha_numeric=5} pic"><a href="/vod/{string=6}.html" title="{rand_keyword}">
+                                        <div class="{alpha_numeric=5} img-wrapper lazyload img-wrapper-pic"
+                                            data-original="{rand_file}" data-background="{rand_file}"
+                                            style="background-image: url({rand_file});"></div>
+                                    </a></div>
+                                <div class="{alpha_numeric=5} name">
+                                    <h3><a href="/vod/{string=6}.html" title="{rand_keyword}">{rand_keyword}</a></h3>
+                                    <p class="item-status text-overflow">更新至{digits=2}集</p>
+                                </div>
+                            </li>
+                            <li class="col-xs-4 col-md-3 col-xl-2">
+                                <div class="{alpha_numeric=5} pic"><a href="/vod/{string=6}.html" title="{rand_keyword}">
+                                        <div class="{alpha_numeric=5} img-wrapper lazyload img-wrapper-pic"
+                                            data-original="{rand_file}" data-background="{rand_file}"
+                                            style="background-image: url({rand_file});"></div>
+                                    </a></div>
+                                <div class="{alpha_numeric=5} name">
+                                    <h3><a href="/vod/{string=6}.html" title="{rand_keyword}">{rand_keyword}</a></h3>
+                                    <p class="item-status text-overflow">更新至{digits=2}集</p>
+                                </div>
+                            </li>
+                            <li class="col-xs-4 col-md-3 col-xl-2">
+                                <div class="{alpha_numeric=5} pic"><a href="/vod/{string=6}.html" title="{rand_keyword}">
+                                        <div class="{alpha_numeric=5} img-wrapper lazyload img-wrapper-pic"
+                                            data-original="{rand_file}" data-background="{rand_file}"
+                                            style="background-image: url({rand_file});"></div>
+                                    </a></div>
+                                <div class="{alpha_numeric=5} name">
+                                    <h3><a href="/vod/{string=6}.html" title="{rand_keyword}">{rand_keyword}</a></h3>
+                                    <p class="item-status text-overflow">更新至{digits=2}集</p>
+                                </div>
+                            </li>
+                            <li class="col-xs-4 col-md-3 col-xl-2">
+                                <div class="{alpha_numeric=5} pic"><a href="/vod/{string=6}.html" title="{rand_keyword}">
+                                        <div class="{alpha_numeric=5} img-wrapper lazyload img-wrapper-pic"
+                                            data-original="{rand_file}" data-background="{rand_file}"
+                                            style="background-image: url({rand_file});"></div>
+                                    </a></div>
+                                <div class="{alpha_numeric=5} name">
+                                    <h3><a href="/vod/{string=6}.html" title="{rand_keyword}">{rand_keyword}</a></h3>
+                                    <p class="item-status text-overflow">更新至{digits=2}集</p>
+                                </div>
+                            </li>
+                            <li class="col-xs-4 col-md-3 col-xl-2">
+                                <div class="{alpha_numeric=5} pic"><a href="/vod/{string=6}.html" title="{rand_keyword}">
+                                        <div class="{alpha_numeric=5} img-wrapper lazyload img-wrapper-pic"
+                                            data-original="{rand_file}" data-background="{rand_file}"
+                                            style="background-image: url({rand_file});"></div>
+                                    </a></div>
+                                <div class="{alpha_numeric=5} name">
+                                    <h3><a href="/vod/{string=6}.html" title="{rand_keyword}">{rand_keyword}</a></h3>
+                                    <p class="item-status text-overflow">更新至{digits=2}集</p>
+                                </div>
+                            </li>
+                            <li class="col-xs-4 col-md-3 col-xl-2">
+                                <div class="{alpha_numeric=5} pic"><a href="/vod/{string=6}.html" title="{rand_keyword}">
+                                        <div class="{alpha_numeric=5} img-wrapper lazyload img-wrapper-pic"
+                                            data-original="{rand_file}" data-background="{rand_file}"
+                                            style="background-image: url({rand_file});"></div>
+                                    </a></div>
+                                <div class="{alpha_numeric=5} name">
+                                    <h3><a href="/vod/{string=6}.html" title="{rand_keyword}">{rand_keyword}</a></h3>
+                                    <p class="item-status text-overflow">更新至{digits=2}集</p>
+                                </div>
+                            </li>
+                            <li class="col-xs-4 col-md-3 col-xl-2">
+                                <div class="{alpha_numeric=5} pic"><a href="/vod/{string=6}.html" title="{rand_keyword}">
+                                        <div class="{alpha_numeric=5} img-wrapper lazyload img-wrapper-pic"
+                                            data-original="{rand_file}" data-background="{rand_file}"
+                                            style="background-image: url({rand_file});"></div>
+                                    </a></div>
+                                <div class="{alpha_numeric=5} name">
+                                    <h3><a href="/vod/{string=6}.html" title="{rand_keyword}">{rand_keyword}</a></h3>
+                                    <p class="item-status text-overflow">更新至{digits=2}集</p>
+                                </div>
+                            </li>
+                            <li class="col-xs-4 col-md-3 col-xl-2">
+                                <div class="{alpha_numeric=5} pic"><a href="/vod/{string=6}.html" title="{rand_keyword}">
+                                        <div class="{alpha_numeric=5} img-wrapper lazyload img-wrapper-pic"
+                                            data-original="{rand_file}" data-background="{rand_file}"
+                                            style="background-image: url({rand_file});"></div>
+                                    </a></div>
+                                <div class="{alpha_numeric=5} name">
+                                    <h3><a href="/vod/{string=6}.html" title="{rand_keyword}">{rand_keyword}</a></h3>
+                                    <p class="item-status text-overflow">更新至{digits=2}集</p>
+                                </div>
+                            </li>
+                            <li class="col-xs-4 col-md-3 col-xl-2">
+                                <div class="{alpha_numeric=5} pic"><a href="/vod/{string=6}.html" title="{rand_keyword}">
+                                        <div class="{alpha_numeric=5} img-wrapper lazyload img-wrapper-pic"
+                                            data-original="{rand_file}" data-background="{rand_file}"
+                                            style="background-image: url({rand_file});"></div>
+                                    </a></div>
+                                <div class="{alpha_numeric=5} name">
+                                    <h3><a href="/vod/{string=6}.html" title="{rand_keyword}">{rand_keyword}</a></h3>
+                                    <p class="item-status text-overflow">更新至{digits=2}集</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="layout-box clearfix gap">
+                    <div class="art-box">
+                        <h2>相关资讯</h2>
+                        <ul class="art-list clearfix">
+                            <li class="art-item row clearfix">
+                                <div class="art-item-cover col-xs-4"><a class="img-wrapper lazyload" data-original="{rand_file}" href="/vod/{string=6}.html" title="{rand_keyword}"></a></div>
+                                <div class="art-item-info col-xs-8">
+                                <h3 class="art-item-title text-row-1 text-row-xs-2 text-row-sm-2"><a href="/vod/{string=6}.html" title="{rand_keyword}" style="color:#{digits=6};">{rand_keyword}</a></h3>
+                                  <p class="art-item-desc text-row-3 text-row-md-2 text-row-xl-2 hidden-xs hidden-sm">{rand_keyword}</p>
+                                  <div class="art-item-foot hidden-xs clearfix"><a href="/vod/{string=6}.html">{rand_keyword}</a><span>{timestamp_year}-{timestamp_month}-{timestamp_day}</span></div>
+                                </div>
+                              </li>
+                              <li class="art-item row clearfix">
+                                <div class="art-item-cover col-xs-4"><a class="img-wrapper lazyload" data-original="{rand_file}" href="/vod/{string=6}.html" title="{rand_keyword}"></a></div>
+                                <div class="art-item-info col-xs-8">
+                                <h3 class="art-item-title text-row-1 text-row-xs-2 text-row-sm-2"><a href="/vod/{string=6}.html" title="{rand_keyword}" style="color:#{digits=6};">{rand_keyword}</a></h3>
+                                  <p class="art-item-desc text-row-3 text-row-md-2 text-row-xl-2 hidden-xs hidden-sm">{rand_keyword}</p>
+                                  <div class="art-item-foot hidden-xs clearfix"><a href="/vod/{string=6}.html">{rand_keyword}</a><span>{timestamp_year}-{timestamp_month}-{timestamp_day}</span></div>
+                                </div>
+                              </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="comment-box layout-box gap">
+                    <div class="comment-list">
+                        <h2 class="gap">用户评论</h2>
+                        <div class="ewave-comment"
+                            data-id="{digits=4}"
+                            data-mid="{digits=2}">
+                            <div class="ewave-empty"><i class="fa fa-refresh fa-spin"></i>&nbsp;正在加载</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="vod-right col-xs-12 col-xl-3 ewave-sticky hidden-xs hidden-sm hidden-md hidden-lg">
+                <div class="layout-box clearfix gap">
+                    <div class="hot">
+                        <h2>排行榜</h2>
+                        <ul class="ranking-list">
+                            <li class="ranking-item">
+                                <a class="text-overflow" href="/vod/{string=6}.html" title="{rand_keyword}">
+                                    <div class="ranking-item-left"><span class="ranking-item-icon">NO</span> <span class="ranking-item-num">1</span>
+                                      <div class="ranking-item-cover">
+                                        <div class="img-wrapper lazyload" data-original="{rand_file}"></div>
+                                      </div>
+                                    </div>
+                                    <div class="ranking-item-hits hidden-lg hidden-xl"><i class="fa fa-fire"></i>&nbsp;{digits=4}</div>
+                                    <div class="ranking-item-info">
+                                      <h4 class="text-overflow" style="color:#{digits=6};">{rand_keyword}</h4>
+                                      <p class="text-overflow">更新至{digits=2}集</p>
+                                    </div>
+                                    </a>
+                            </li>
+                            <li class="ranking-item">
+                                <a class="text-overflow" href="/vod/{string=6}.html" title="{rand_keyword}">
+                                    <div class="ranking-item-left"><span class="ranking-item-icon">NO</span> <span class="ranking-item-num">2</span>
+                                      <div class="ranking-item-cover">
+                                        <div class="img-wrapper lazyload" data-original="{rand_file}"></div>
+                                      </div>
+                                    </div>
+                                    <div class="ranking-item-hits hidden-lg hidden-xl"><i class="fa fa-fire"></i>&nbsp;{digits=4}</div>
+                                    <div class="ranking-item-info">
+                                      <h4 class="text-overflow" style="color:#{digits=6};">{rand_keyword}</h4>
+                                      <p class="text-overflow">更新至{digits=2}集</p>
+                                    </div>
+                                    </a>
+                            </li>
+                            <li class="ranking-item">
+                                <a class="text-overflow" href="/vod/{string=6}.html" title="{rand_keyword}">
+                                    <div class="ranking-item-left"><span class="ranking-item-icon">NO</span> <span class="ranking-item-num">3</span>
+                                      <div class="ranking-item-cover">
+                                        <div class="img-wrapper lazyload" data-original="{rand_file}"></div>
+                                      </div>
+                                    </div>
+                                    <div class="ranking-item-hits hidden-lg hidden-xl"><i class="fa fa-fire"></i>&nbsp;{digits=4}</div>
+                                    <div class="ranking-item-info">
+                                      <h4 class="text-overflow" style="color:#{digits=6};">{rand_keyword}</h4>
+                                      <p class="text-overflow">更新至{digits=2}集</p>
+                                    </div>
+                                    </a>
+                            </li>
+                            <li class="ranking-item">
+                                <a class="text-overflow" href="/vod/{string=6}.html" title="{rand_keyword}">
+                                    <div class="ranking-item-left"><span class="ranking-item-icon">NO</span> <span class="ranking-item-num">4</span>
+                                      <div class="ranking-item-cover">
+                                        <div class="img-wrapper lazyload" data-original="{rand_file}"></div>
+                                      </div>
+                                    </div>
+                                    <div class="ranking-item-hits hidden-lg hidden-xl"><i class="fa fa-fire"></i>&nbsp;{digits=4}</div>
+                                    <div class="ranking-item-info">
+                                      <h4 class="text-overflow" style="color:#{digits=6};">{rand_keyword}</h4>
+                                      <p class="text-overflow">更新至{digits=2}集</p>
+                                    </div>
+                                    </a>
+                            </li>
+                            <li class="ranking-item">
+                                <a class="text-overflow" href="/vod/{string=6}.html" title="{rand_keyword}">
+                                    <div class="ranking-item-left"><span class="ranking-item-icon">NO</span> <span class="ranking-item-num">5</span>
+                                      <div class="ranking-item-cover">
+                                        <div class="img-wrapper lazyload" data-original="{rand_file}"></div>
+                                      </div>
+                                    </div>
+                                    <div class="ranking-item-hits hidden-lg hidden-xl"><i class="fa fa-fire"></i>&nbsp;{digits=4}</div>
+                                    <div class="ranking-item-info">
+                                      <h4 class="text-overflow" style="color:#{digits=6};">{rand_keyword}</h4>
+                                      <p class="text-overflow">更新至{digits=2}集</p>
+                                    </div>
+                                    </a>
+                            </li>
+                            <li class="ranking-item">
+                                <a class="text-overflow" href="/vod/{string=6}.html" title="{rand_keyword}">
+                                    <div class="ranking-item-left"><span class="ranking-item-icon">NO</span> <span class="ranking-item-num">6</span>
+                                      <div class="ranking-item-cover">
+                                        <div class="img-wrapper lazyload" data-original="{rand_file}"></div>
+                                      </div>
+                                    </div>
+                                    <div class="ranking-item-hits hidden-lg hidden-xl"><i class="fa fa-fire"></i>&nbsp;{digits=4}</div>
+                                    <div class="ranking-item-info">
+                                      <h4 class="text-overflow" style="color:#{digits=6};">{rand_keyword}</h4>
+                                      <p class="text-overflow">更新至{digits=2}集</p>
+                                    </div>
+                                    </a>
+                            </li>
+                            <li class="ranking-item">
+                                <a class="text-overflow" href="/vod/{string=6}.html" title="{rand_keyword}">
+                                    <div class="ranking-item-left"><span class="ranking-item-icon">NO</span> <span class="ranking-item-num">7</span>
+                                      <div class="ranking-item-cover">
+                                        <div class="img-wrapper lazyload" data-original="{rand_file}"></div>
+                                      </div>
+                                    </div>
+                                    <div class="ranking-item-hits hidden-lg hidden-xl"><i class="fa fa-fire"></i>&nbsp;{digits=4}</div>
+                                    <div class="ranking-item-info">
+                                      <h4 class="text-overflow" style="color:#{digits=6};">{rand_keyword}</h4>
+                                      <p class="text-overflow">更新至{digits=2}集</p>
+                                    </div>
+                                    </a>
+                            </li>
+                            <li class="ranking-item">
+                                <a class="text-overflow" href="/vod/{string=6}.html" title="{rand_keyword}">
+                                    <div class="ranking-item-left"><span class="ranking-item-icon">NO</span> <span class="ranking-item-num">8</span>
+                                      <div class="ranking-item-cover">
+                                        <div class="img-wrapper lazyload" data-original="{rand_file}"></div>
+                                      </div>
+                                    </div>
+                                    <div class="ranking-item-hits hidden-lg hidden-xl"><i class="fa fa-fire"></i>&nbsp;{digits=4}</div>
+                                    <div class="ranking-item-info">
+                                      <h4 class="text-overflow" style="color:#{digits=6};">{rand_keyword}</h4>
+                                      <p class="text-overflow">更新至{digits=2}集</p>
+                                    </div>
+                                    </a>
+                            </li>
+                            <li class="ranking-item">
+                                <a class="text-overflow" href="/vod/{string=6}.html" title="{rand_keyword}">
+                                    <div class="ranking-item-left"><span class="ranking-item-icon">NO</span> <span class="ranking-item-num">9</span>
+                                      <div class="ranking-item-cover">
+                                        <div class="img-wrapper lazyload" data-original="{rand_file}"></div>
+                                      </div>
+                                    </div>
+                                    <div class="ranking-item-hits hidden-lg hidden-xl"><i class="fa fa-fire"></i>&nbsp;{digits=4}</div>
+                                    <div class="ranking-item-info">
+                                      <h4 class="text-overflow" style="color:#{digits=6};">{rand_keyword}</h4>
+                                      <p class="text-overflow">更新至{digits=2}集</p>
+                                    </div>
+                                    </a>
+                            </li>
+                            <li class="ranking-item">
+                                <a class="text-overflow" href="/vod/{string=6}.html" title="{rand_keyword}">
+                                    <div class="ranking-item-left"><span class="ranking-item-icon">NO</span> <span class="ranking-item-num">10</span>
+                                      <div class="ranking-item-cover">
+                                        <div class="img-wrapper lazyload" data-original="{rand_file}"></div>
+                                      </div>
+                                    </div>
+                                    <div class="ranking-item-hits hidden-lg hidden-xl"><i class="fa fa-fire"></i>&nbsp;{digits=4}</div>
+                                    <div class="ranking-item-info">
+                                      <h4 class="text-overflow" style="color:#{digits=6};">{rand_keyword}</h4>
+                                      <p class="text-overflow">更新至{digits=2}集</p>
+                                    </div>
+                                    </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="container">
+            <p class="hidden-xs"> <a href="/label/new">最新更新</a> <i>|</i> <a
+                    href="/map">网站地图</a> <i>|</i> <a href="/rss/index">RSS订阅</a>
+                <i>|</i> <a href="/rss/baidu">百度蜘蛛</a> <i>|</i> <a href="/rss/google">谷歌地图</a>
+                <i>|</i> <a href="/rss/bing">必应地图</a> <i>|</i> <a href="/rss/360">360地图</a>
+                <i>|</i> <a href="/rss/sogou">搜狗地图</a> <i>|</i> <a href="/rss/sm">神马爬虫</a>
+            </p>
+            <p>本站所有视频和图片均来自互联网收集而来，版权归原创者所有，本网站只提供web页面服务，并不提供资源存储，也不参与录制</p>
+            <p>Copyright © {timestamp_year} {site_title} All Rights Reserved</p>
+        </div>
+    </div>
+    <div class="fixedbar-fixed-bar">
+        <div class="ant-back-top"> <i class="fa fa-angle-up"></i> <span class="fixedbar-top">顶部</span> <a
+                href="javascript:void(0);" class="fixedbar-top-link"></a> </div>
+        <div class="skin-switch">
+            <a class="light" href="javascript:;" title="切换至亮色模式"><span class="fa fa-sun-o"></span></a>
+            <a class="dark" href="javascript:;" title="切换至暗色模式"><span class="fa fa-moon-o"></span></a>
+        </div>
+    </div>
+    <script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+    <span class="mac_hits hide" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-type="insert"></span>
+    <span class="mac_ulog_set hide" data-type="4" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid=""
+        data-nid=""></span>
+</body>
+
+</html>

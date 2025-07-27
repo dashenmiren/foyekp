@@ -1,0 +1,708 @@
+<html >
+	<head>
+		<meta charset="utf-8" />
+		<meta name="applicable-device" content="pc">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{site_title}</title>
+		<meta name="keywords" content="{site_keywords}" />
+		<meta name="description" content="{site_description}" />
+		<link rel="stylesheet" href="/static/xz/css/uikit.min.css" />
+		<link rel="stylesheet" href="/static/xz/css/style.css" />
+		<link rel="stylesheet" href="/static/xz/css/swiper-bundle.min.css" />
+		<script type="text/javascript" src="/static/xz/js/jquery.min.js" ></script>
+		<script type="text/javascript" src="/static/xz/js/swiper-bundle.min.js"></script>
+	</head>
+	<body id="top-hd">
+		<header class="header">
+			<div class="topbar">
+				<div class="uk-container uk-flex uk-flex-middle">
+					<div class="uk-flex-1">应用宝下载站，安卓手机游戏下载门户网站</div>
+					<ul>
+						<li><a onclick="AddFavorite('应用宝下载',location.href)">点击收藏</a></li>
+						<li><a onclick="SetHome(this,document.domain)">设为首页</a></li>
+						<li><a href="/" target="_blank">移动端</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="head uk-flex uk-flex-middle uk-container uk-cover-container">
+				<div class="logo uk-flex-1">
+					<a href="/" target="_blank">
+						<img src="/static/xz/picture/logo.png" alt="应用宝下载">
+					</a>
+				</div>
+				<div class="icon-guidepost uk-position-bottom-right"></div>
+			</div>
+						<div class="navbar">
+				<div class="uk-container uk-flex uk-flex-middle">
+					<ul class="uk-flex-1">
+												<li class=""><a href="/" target="_blank" >首页</a></li>
+												<li class=""><a href="/information/" target="_blank" >资讯中心</a></li>
+												<li class=""><a href="/gamelist/" target="_blank" >手游下载</a></li>
+												<li class="active"><a href="/applist/" target="_blank" >应用软件</a></li>
+												<li class=""><a href="/gamealbum/" target="_blank" >手游专辑</a></li>
+												<li class=""><a href="/appranklist/" target="_blank" >手游排行榜</a></li>
+												<li class=""><a href="/giftlist/" target="_blank" >游戏礼包</a></li>
+											</ul>
+					<div class="search uk-flex uk-flex-middle">
+						<i></i>
+						<input type="text" placeholder="请输入要搜索的内容" id="inp" value="">
+					</div>
+				</div>
+			</div>
+		</header>
+		<main class="uk-container">
+<div class="crumbs">
+	<span>当前位置：</span>
+	<a href="/" target="_blank">网站首页</a>
+		<a href="/applist/" target="_blank">应用软件</a>
+		<a href="/applist01/" target="_blank">影音播放</a>
+		<span>正文</span>
+	</div>
+
+<div class="module single uk-padding-small">
+		<div class="single-apps uk-margin">
+		<div class="single-header uk-flex uk-flex-middle single-header-news">
+			<div class="single-header-box">
+				<div class="single-box uk-flex uk-flex-middle">
+					<div class="icon uk-cover-container">
+						<img src="/static/xz/picture/486ac4db0d3219df73e29675f23bf15a.png" alt="{keyword}" uk-cover>
+					</div>
+					<div class="uk-flex-1">
+						<div class="uk-flex uk-flex-middle uk-margin-bottom">
+						<h1 class="title uk-text-truncate">{keyword}</h1>
+						<div>
+														<span class="tishi tishi-az">安卓</span>
+													</div>
+						</div>
+						<ul>
+							<li>应用类型：影音播放</li>
+							<li>应用大小：{digits=2}.{digits=2} MB</li>
+							<li>更新时间：{timestamp_year}-{timestamp_month}-{timestamp_day}</li>
+							<li>应用语言：简体中文</li>
+							<li>应用评分：{digits=1}.0</li>
+							<li>下载次数：{digits=3}</li>
+						</ul>
+					</div>
+				</div>
+								<div class="down-btn uk-flex uk-flex-middle">
+											<div class="btn az">
+							<span class="before-middle">安卓版下载</span>
+							<div class="ewm">
+								<img src="/static/xz/picture/120084.html" alt="{keyword}">
+								<div class="uk-text-muted"><img src="/static/xz/picture/code_txt.png" alt="" style="height: 17px;width:78px"></div>
+							</div>
+						</div>
+												<div class="btn ios none">
+							<img src="/static/xz/picture/no_down.png" alt="">
+						</div>
+															</div>
+			</div>
+			<div class="rank-index item">
+				<div class="rank-icon">
+					<span>9</span>
+				</div>
+				<div>
+					<div class="rank-exponent">推荐指数：
+						<div class="star star-4 rank-start"></div>
+					</div>
+					<div class="rank-exponent">好玩指数：
+						<div class="star star-4 rank-start"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class=" uk-flex uk-margin-top">
+			<div class="app-warp uk-flex-1 uk-cover-container">
+				<div class="module-title uk-flex uk-flex-middle">
+					<b class="title uk-flex-1 before-middle">应用简介</b>
+				</div>
+				<div class="single-content uk-margin">
+					
+<p>{url}----{siteurl}----{prefix}----{gdkeyword}--!{rand_article_title}!--在当前的直播环境下，人们对于身边的风景、事物、人群以及各类社交事件都有了更加深入的认知。这{keyword}更是为用户提供了多元化、创新性的互动方式，让“亲密互动”“情感连线”成为了人们在这里的日常，同时“交友派对”“附近广场”“热门榜单”也成为了这个平台的重要组成部分。</p>
+<h3>软件介绍：{keyword}{rand_ico}{prefix}</h3>
+<p>在{keyword}{rand_ico}{prefix}，你可以体验到“亲密互动”这一全新理念。一个表情、一个声音、一段视频都可能让你认识到许多新的朋友，通过各种创新的互动方式，让你的每一次拂过屏幕的指尖都能感受到真实的情感温度。而这里的每一位主播，都是独特的自我，他们用自己的方式反映出这个世界的美好，观众们可以直播中与主播进行亲密互动，拉近了主播与观众之间的距离。</p>
+<h3>软件亮点-{timestamp_year}--{timestamp_month}--{timestamp_day}--{timestamp_hour}--{timestamp_minute}--{timestamp_second}--{timestamp_datetime}--{timestamp_random}</h3>
+<p>1.{keyword}强调“情感连线”。在互联网时代，虽然人们的交往方式变化了，但情感的需求从未变过，我们都希望找到理解自己、懂得欣赏自己的那个人。{keyword}就为各位用户提供了这个机会，无论你在哪，都可以通过直播寻找那个心灵默契的伙伴，让你的生活充满情感的色彩。</p>
+<p>2.而“交友派对”则是{keyword}的一大亮点。举办各类主题派对让人们在愉快的气氛中增加交友机会，不论是萌系的cosplay派对，还是超炫的电音派对，你总能找到符合自己口味的次集合。与此{keyword}上还设有虚拟礼物，用户可以购买赠送给喜欢的主播，这不仅是对主播努力的肯定，也能增进彼此的关系。</p>
+<h3>软件特色：</h3>
+<p>1.在{keyword}，“附近广场”则是打破地域限制的试验场。你可以发现和自己位置接近的热门直播，发现附近的新鲜事。而在“附近广场”中，你更可以选择加入这些直播，与身边的人进行实时的交流和互动，让社交变得更加便捷且有趣。</p>
+<p>2.摆脱地域限制的{keyword}也重视公正和透明，因此设立了“热门榜单”，每天更新最新的热门直播、人气主播，让用户随时能够了解热点。并且，{keyword}的热门榜单设置也充分考虑到严谨公正的排序原则，通过大数据分析，让每个优秀的主播都能得到应有的关注。</p>
+<h3>软件点评：</h3>
+<p>{keyword}通过丰富多样的互动方式促进用户之间的交流互动，该平台以亲密的气氛、创新的形式，真实的情感连线，吸引了大量用户的参与，让直播不仅仅只是看，还可以成为一种全新的社交体验。做为一个富有创新意识和服务意识的直播社区，{keyword}致力于构建一个全新的、亲密的、有趣的社交直播平台。</p>
+				</div>
+				<div class="module-title uk-flex uk-flex-middle">
+					<b class="title uk-flex-1 before-middle">应用截图</b>
+				</div>
+								<div class="single-slide uk-margin uk-position-relative">
+					<div uk-slider>
+						<ul class="uk-slider-items uk-grid uk-grid-small" uk-grid>
+							<li class="uk-width-2-3 uk-width-1-3@m uk-width-1-3@l uk-width-1-3@xl">
+								<img src="{rand_file}">
+							</li>
+							<li class="uk-width-2-3 uk-width-1-3@m uk-width-1-3@l uk-width-1-3@xl">
+								<img src="{rand_file1}">
+							</li>
+														<li class="uk-width-2-3 uk-width-1-3@m uk-width-1-3@l uk-width-1-3@xl">
+								<img src="/static/xz/picture/40a148c3eb03c6fee983d46eeaec72a7.png">
+							</li>
+														<li class="uk-width-2-3 uk-width-1-3@m uk-width-1-3@l uk-width-1-3@xl">
+								<img src="/static/xz/picture/f4527c2f99528867920c1c5671ddfa19.png">
+							</li>
+														<li class="uk-width-2-3 uk-width-1-3@m uk-width-1-3@l uk-width-1-3@xl">
+								<img src="/static/xz/picture/8b60c56352a167b58daf13a7187f24fe.png">
+							</li>
+														<li class="uk-width-2-3 uk-width-1-3@m uk-width-1-3@l uk-width-1-3@xl">
+								<img src="/static/xz/picture/6e6fa4871a544c73f76feeb1619f9956.png">
+							</li>
+													</ul>
+						<a class="slider-arrow uk-position-center-left" uk-slider-item="previous"></a>
+						<a class="slider-arrow uk-position-center-right" uk-slider-item="next"></a>
+					</div>
+				</div>
+								<div class="uk-margin-medium">
+					<div class="module-title uk-flex uk-flex-middle uk-margin-bottom">
+						<b class="title uk-flex-1 before-middle">应用信息</b>
+					</div>
+					<ul id="app_info"></ul>
+				</div>
+				<div class="side-gl uk-margin-medium">
+					<div class="module-title uk-flex uk-flex-middle">
+						<b class="title uk-flex-1 before-middle">游戏攻略</b>
+					</div>
+					<div class="gl-card uk-grid uk-grid-small uk-margin-top" uk-grid>
+												<div class="uk-width-1-1 uk-width-1-2@m uk-width-1-2@xl">
+							<div class="item b-a uk-padding-small">
+								<div class="title uk-text-truncate">
+									<span>最新</span>
+									<a href="/information01/{digits=6}.html" target="_blank">《{keyword1}》国服最新战区&ldquo;天穹战歌&rdquo;今日开启,天穹之巅等你来战</a>
+								</div>
+								<div class="desc line-2">坎特拉的勇士们，战歌已然奏响，《{keyword2}》国服最新战区【天穹战歌】正式开放！这里不仅有热血</div>
+								<div class="uk-flex uk-flex-middle">
+									<div class="uk-flex-1 time">06-25</div>
+									<a class="c-pm uk-text-small" href="/information01/{digits=6}.html" target="_blank">查看详情>></a>
+								</div>
+							</div>
+						</div>
+												<div class="uk-width-1-1 uk-width-1-2@m uk-width-1-2@xl">
+							<div class="item b-a uk-padding-small">
+								<div class="title uk-text-truncate">
+									<span>最新</span>
+									<a href="/information01/{digits=6}.html" target="_blank">朋克新游《{keyword2}》再掀多人快节奏对战狂潮</a>
+								</div>
+								<div class="desc line-2">8月15日，一款名为《{keyword2}》（英译为《STACK》）的多人跑酷飞盘竞技游戏在全球PIC</div>
+								<div class="uk-flex uk-flex-middle">
+									<div class="uk-flex-1 time">08-16</div>
+									<a class="c-pm uk-text-small" href="/information01/{digits=6}.html" target="_blank">查看详情>></a>
+								</div>
+							</div>
+						</div>
+												<div class="uk-width-1-1 uk-width-1-2@m uk-width-1-2@xl">
+							<div class="item b-a uk-padding-small">
+								<div class="title uk-text-truncate">
+									<span>最新</span>
+									<a href="/information01/{digits=6}.html" target="_blank">六一端午齐欢度 《{keyword3}》福利活动今日开启</a>
+								</div>
+								<div class="desc line-2">5月23日，西山居剑侠情缘系列游戏《{keyword3}》将开启拼图有礼、端午食粽饮雄黄、离骚收集等精彩</div>
+								<div class="uk-flex uk-flex-middle">
+									<div class="uk-flex-1 time">05-22</div>
+									<a class="c-pm uk-text-small" href="/information01/{digits=6}.html" target="_blank">查看详情>></a>
+								</div>
+							</div>
+						</div>
+												<div class="uk-width-1-1 uk-width-1-2@m uk-width-1-2@xl">
+							<div class="item b-a uk-padding-small">
+								<div class="title uk-text-truncate">
+									<span>最新</span>
+									<a href="/information01/{digits=6}.html" target="_blank">《{keyword4}》南天门计划联动 PV 正式发布 全平台公测今日开启</a>
+								</div>
+								<div class="desc line-2">「欢迎加入{keyword4}计划」，由英雄游戏倾力打造的赤潮宇宙策略卡牌 RPG《{keyword4} </div>
+								<div class="uk-flex uk-flex-middle">
+									<div class="uk-flex-1 time">04-24</div>
+									<a class="c-pm uk-text-small" href="/information01/{digits=6}.html" target="_blank">查看详情>></a>
+								</div>
+							</div>
+						</div>
+											</div>
+				</div>
+				<div class="single-bottom-album uk-margin-top">
+					<div class="module-title uk-flex uk-flex-middle">
+						<b class="title uk-flex-1 before-middle">应用专辑</b>
+					</div>
+										<div class="album-top uk-flex uk-flex-middle uk-margin uk-cover-container">
+						<div class="thumb uk-cover-container uk-margin-right">
+							<a href="/appalbum/{digits=6}.html"
+								target="_blank">
+								<img src="/static/xz/picture/ce24e651a3085dbbc9b247350fa42e99.jpg" alt="{timestamp_year}直播软件app" uk-cover>
+							</a>
+						</div>
+						<div class="album-warp uk-flex-1 uk-cover-container">
+							<div class="title uk-text-truncate uk-margin-small-bottom">
+								<a class="uk-text-bold c-333" href="/appalbum/{digits=6}.html" target="_blank">{timestamp_year}直播软件app</a>
+							</div>
+							<div class="desc line-2">{timestamp_year}直播软件app是{timestamp_year}最新推出的手机直播app，软件支持360全面监控，24小时高效接听视频监控，同时还支持后台小监控管理，在手机上一应俱全，随时手机关打</div>
+						</div>
+					</div>
+					<div class="album-games">
+												<div class="uk-grid uk-grid-medium" uk-grid>
+														<div class="item uk-width-auto uk-text-center">
+								<div class="icon uk-cover-container">
+									<a href="/applist08/{digits=6}.html"
+										target="_blank">
+										<img src="/static/xz/picture/47cf4aa9a03041473d3547dcd2f79ab2.png" alt="{rand_keyword}" uk-cover>
+									</a>
+								</div>
+								<div class="title uk-text-truncate">
+									<a href="/applist08/{digits=6}.html"
+										target="_blank">{rand_keyword}</a>
+								</div>
+								<div class="btn">
+									<a href="/applist08/{digits=6}.html"
+										target="_blank">查看</a>
+								</div>
+							</div>
+														<div class="item uk-width-auto uk-text-center">
+								<div class="icon uk-cover-container">
+									<a href="/applist08/{digits=6}.html"
+										target="_blank">
+										<img src="/static/xz/picture/a826384a0f536af422031a1ee31b5e31.png" alt="{rand_keyword}" uk-cover>
+									</a>
+								</div>
+								<div class="title uk-text-truncate">
+									<a href="/applist08/{digits=6}.html"
+										target="_blank">{rand_keyword}</a>
+								</div>
+								<div class="btn">
+									<a href="/applist08/{digits=6}.html"
+										target="_blank">查看</a>
+								</div>
+							</div>
+														<div class="item uk-width-auto uk-text-center">
+								<div class="icon uk-cover-container">
+									<a href="/applist01/{digits=6}.html"
+										target="_blank">
+										<img src="/static/xz/picture/639baae17fa29ebd1074f3e9b0523d1e.png" alt="{rand_keyword}" uk-cover>
+									</a>
+								</div>
+								<div class="title uk-text-truncate">
+									<a href="/applist01/{digits=6}.html"
+										target="_blank">{rand_keyword}</a>
+								</div>
+								<div class="btn">
+									<a href="/applist01/{digits=6}.html"
+										target="_blank">查看</a>
+								</div>
+							</div>
+														<div class="item uk-width-auto uk-text-center">
+								<div class="icon uk-cover-container">
+									<a href="/applist01/{digits=6}.html"
+										target="_blank">
+										<img src="/static/xz/picture/1dab1712a204667d8e719812f6028db3.png" alt="{rand_keyword}" uk-cover>
+									</a>
+								</div>
+								<div class="title uk-text-truncate">
+									<a href="/applist01/{digits=6}.html"
+										target="_blank">{rand_keyword}</a>
+								</div>
+								<div class="btn">
+									<a href="/applist01/{digits=6}.html"
+										target="_blank">查看</a>
+								</div>
+							</div>
+														<div class="item uk-width-auto uk-text-center">
+								<div class="icon uk-cover-container">
+									<a href="/applist01/{digits=6}.html"
+										target="_blank">
+										<img src="/static/xz/picture/0987c9b77d703ac31bf0b146b9c42a8a.png" alt="{rand_keyword}" uk-cover>
+									</a>
+								</div>
+								<div class="title uk-text-truncate">
+									<a href="/applist01/{digits=6}.html"
+										target="_blank">{rand_keyword}</a>
+								</div>
+								<div class="btn">
+									<a href="/applist01/{digits=6}.html"
+										target="_blank">查看</a>
+								</div>
+							</div>
+														<div class="item uk-width-auto uk-text-center">
+								<div class="icon uk-cover-container">
+									<a href="/applist01/{digits=6}.html"
+										target="_blank">
+										<img src="/static/xz/picture/4c7990289e50b1000925e19a0d6ae3e3.jpg" alt="{rand_keyword}" uk-cover>
+									</a>
+								</div>
+								<div class="title uk-text-truncate">
+									<a href="/applist01/{digits=6}.html"
+										target="_blank">{rand_keyword}</a>
+								</div>
+								<div class="btn">
+									<a href="/applist01/{digits=6}.html"
+										target="_blank">查看</a>
+								</div>
+							</div>
+													</div>
+					</div>
+									</div>
+			</div>
+			<div class="sidebar uk-margin-left">
+								<div class="side-rank uk-margin-medium">
+					<div class="module-title uk-flex uk-flex-middle">
+						<b class="title uk-flex-1 before-middle">同类型排行</b>
+					</div>
+					<div class="rank-warp">
+												<div class="item uk-flex uk-flex-middle uk-margin-top">
+							<div class="num">1</div>
+							<div class="icon uk-cover-container">
+								<a href="/applist08/{digits=6}.html"
+									target="_blank">
+									<img src="/static/xz/picture/cf7a292328be7f0e246d87317f964b03.jpg" alt="{rand_keyword}" uk-cover>
+								</a>
+							</div>
+							<div class="uk-flex-1 uk-cover-container">
+								<div class="title uk-text-truncate uk-margin-bottom">
+									<a href="/applist08/{digits=6}.html"
+										target="_blank">{rand_keyword}</a>
+								</div>
+								<div class="info uk-text-muted">生活服务 | 34.95 MB</div>
+							</div>
+						</div>
+												<div class="item uk-flex uk-flex-middle uk-margin-top">
+							<div class="num">2</div>
+							<div class="icon uk-cover-container">
+								<a href="/applist01/{digits=6}.html"
+									target="_blank">
+									<img src="/static/xz/picture/3654286340ec6f0c0763a722891b0c29.png" alt="{rand_keyword}" uk-cover>
+								</a>
+							</div>
+							<div class="uk-flex-1 uk-cover-container">
+								<div class="title uk-text-truncate uk-margin-bottom">
+									<a href="/applist01/{digits=6}.html"
+										target="_blank">{rand_keyword}</a>
+								</div>
+								<div class="info uk-text-muted">影音播放 | 41MB</div>
+							</div>
+						</div>
+												<div class="item uk-flex uk-flex-middle uk-margin-top">
+							<div class="num">3</div>
+							<div class="icon uk-cover-container">
+								<a href="/applist06/{digits=6}.html"
+									target="_blank">
+									<img src="/static/xz/picture/c4a7eb6bfc2020b62853698dda1e1a16.png" alt="{rand_keyword}" uk-cover>
+								</a>
+							</div>
+							<div class="uk-flex-1 uk-cover-container">
+								<div class="title uk-text-truncate uk-margin-bottom">
+									<a href="/applist06/{digits=6}.html"
+										target="_blank">{rand_keyword}</a>
+								</div>
+								<div class="info uk-text-muted">购物支付 | 7MB</div>
+							</div>
+						</div>
+												<div class="item uk-flex uk-flex-middle uk-margin-top">
+							<div class="num">4</div>
+							<div class="icon uk-cover-container">
+								<a href="/applist06/{digits=6}.html"
+									target="_blank">
+									<img src="/static/xz/picture/83bbdd37c3ed9331d19442b319920b50.png" alt="{rand_keyword}" uk-cover>
+								</a>
+							</div>
+							<div class="uk-flex-1 uk-cover-container">
+								<div class="title uk-text-truncate uk-margin-bottom">
+									<a href="/applist06/{digits=6}.html"
+										target="_blank">{rand_keyword}</a>
+								</div>
+								<div class="info uk-text-muted">购物支付 | 19.63MB</div>
+							</div>
+						</div>
+												<div class="item uk-flex uk-flex-middle uk-margin-top">
+							<div class="num">5</div>
+							<div class="icon uk-cover-container">
+								<a href="/applist05/{digits=6}.html"
+									target="_blank">
+									<img src="/static/xz/picture/4c443d5653f59dd7da9a76b172b9dc2f.png" alt="{rand_keyword}" uk-cover>
+								</a>
+							</div>
+							<div class="uk-flex-1 uk-cover-container">
+								<div class="title uk-text-truncate uk-margin-bottom">
+									<a href="/applist05/{digits=6}.html"
+										target="_blank">{rand_keyword}</a>
+								</div>
+								<div class="info uk-text-muted">金融理财 | 5MB</div>
+							</div>
+						</div>
+												<div class="item uk-flex uk-flex-middle uk-margin-top">
+							<div class="num">6</div>
+							<div class="icon uk-cover-container">
+								<a href="/applist07/{digits=6}.html"
+									target="_blank">
+									<img src="/static/xz/picture/af599304faf359160a037a9d7ffd07de.png" alt="{rand_keyword}" uk-cover>
+								</a>
+							</div>
+							<div class="uk-flex-1 uk-cover-container">
+								<div class="title uk-text-truncate uk-margin-bottom">
+									<a href="/applist07/{digits=6}.html"
+										target="_blank">{rand_keyword}</a>
+								</div>
+								<div class="info uk-text-muted">办公学习 | 34.95 MB</div>
+							</div>
+						</div>
+											</div>
+				</div>
+				<div class="side-hotnews uk-margin-medium">
+					<div class="module-title uk-flex uk-flex-middle">
+						<b class="title uk-flex-1 before-middle">热门资讯</b>
+					</div>
+										<ul class="uk-margin-top">
+												<li class="uk-flex uk-flex-middle uk-margin-top">
+							<a class="before-middle uk-flex-1 uk-text-truncate"
+								href="/information01/{digits=6}.html"
+								target="_blank">《{rand_prefix}》国服最新战区&ldquo;天穹战歌&rdquo;今日开启,天穹之巅等你来战</a>
+							<span class="uk-margin-left">06-25</span>
+						</li>
+												<li class="uk-flex uk-flex-middle uk-margin-top">
+							<a class="before-middle uk-flex-1 uk-text-truncate"
+								href="/information01/{digits=6}.html"
+								target="_blank">朋克新游《{rand_prefix}》再掀多人快节奏对战狂潮</a>
+							<span class="uk-margin-left">08-16</span>
+						</li>
+												<li class="uk-flex uk-flex-middle uk-margin-top">
+							<a class="before-middle uk-flex-1 uk-text-truncate"
+								href="/information01/{digits=6}.html"
+								target="_blank">六一端午齐欢度 《{rand_prefix}》福利活动今日开启</a>
+							<span class="uk-margin-left">05-22</span>
+						</li>
+												<li class="uk-flex uk-flex-middle uk-margin-top">
+							<a class="before-middle uk-flex-1 uk-text-truncate"
+								href="/information01/{digits=6}.html"
+								target="_blank">《{rand_prefix}》南天门计划联动 PV 正式发布 全平台公测今日开启</a>
+							<span class="uk-margin-left">04-24</span>
+						</li>
+												<li class="uk-flex uk-flex-middle uk-margin-top">
+							<a class="before-middle uk-flex-1 uk-text-truncate"
+								href="/information03/{digits=6}.html"
+								target="_blank">{rand_prefix}手游怎么清理农场</a>
+							<span class="uk-margin-left">07-08</span>
+						</li>
+												<li class="uk-flex uk-flex-middle uk-margin-top">
+							<a class="before-middle uk-flex-1 uk-text-truncate"
+								href="/information03/{digits=6}.html"
+								target="_blank">攻城掠地如何-{rand_prefix}</a>
+							<span class="uk-margin-left">07-08</span>
+						</li>
+												<li class="uk-flex uk-flex-middle uk-margin-top">
+							<a class="before-middle uk-flex-1 uk-text-truncate"
+								href="/information03/{digits=6}.html"
+								target="_blank">{rand_prefix}-商店怎么买</a>
+							<span class="uk-margin-left">07-08</span>
+						</li>
+												<li class="uk-flex uk-flex-middle uk-margin-top">
+							<a class="before-middle uk-flex-1 uk-text-truncate"
+								href="/information03/{digits=6}.html"
+								target="_blank">{rand_prefix}东界可以得什么</a>
+							<span class="uk-margin-left">07-08</span>
+						</li>
+											</ul>
+				</div>
+				<div class="hot-gift uk-margin-medium">
+					<div class="module-title uk-flex uk-flex-middle">
+						<b class="title uk-flex-1 before-middle">热门礼包</b>
+					</div>
+										<div class="gift-warp">
+												<div class="item uk-flex uk-flex-middle uk-margin-top">
+							<div class="icon">
+								<a class="uk-cover-container" href="/giftlists/{digits=6}.html" target="_blank">
+									<img src="/static/xz/picture/06d3373c1f456233abd03141de736f49.jpg" alt="《{rand_prefix}》》月度礼包" uk-cover>
+								</a>
+							</div>
+							<div class="uk-flex-1 uk-cover-container">
+								<div class="title uk-text-truncate">
+									<a href="/giftlists/{digits=6}.html" target="_blank">《{rand_prefix}》》月度礼包</a>
+								</div>
+								<div class="platform">
+									<span>平台：</span>
+									<i class="az"></i>
+									<i class="ios"></i>
+								</div>
+							</div>
+							<div class="btn">
+								<a href="/giftlists/{digits=6}.html" target="_blank">领取</a>
+							</div>
+						</div>
+												<div class="item uk-flex uk-flex-middle uk-margin-top">
+							<div class="icon">
+								<a class="uk-cover-container" href="/giftlists/{digits=6}.html" target="_blank">
+									<img src="/static/xz/picture/eea5e4da69b5cef2b67a686da1a514c5.png" alt="《{rand_prefix}》国庆礼包" uk-cover>
+								</a>
+							</div>
+							<div class="uk-flex-1 uk-cover-container">
+								<div class="title uk-text-truncate">
+									<a href="/giftlists/{digits=6}.html" target="_blank">《{rand_prefix}》国庆礼包</a>
+								</div>
+								<div class="platform">
+									<span>平台：</span>
+									<i class="az"></i>
+									<i class="ios"></i>
+								</div>
+							</div>
+							<div class="btn">
+								<a href="/giftlists/{digits=6}.html" target="_blank">领取</a>
+							</div>
+						</div>
+												<div class="item uk-flex uk-flex-middle uk-margin-top">
+							<div class="icon">
+								<a class="uk-cover-container" href="/giftlists/{digits=6}.html" target="_blank">
+									<img src="/static/xz/picture/255a8d27c9dde60fb9f08d4890d961df.png" alt="《{rand_prefix}》黄金周礼包" uk-cover>
+								</a>
+							</div>
+							<div class="uk-flex-1 uk-cover-container">
+								<div class="title uk-text-truncate">
+									<a href="/giftlists/{digits=6}.html" target="_blank">《{rand_prefix}》黄金周礼包</a>
+								</div>
+								<div class="platform">
+									<span>平台：</span>
+									<i class="az"></i>
+									<i class="ios"></i>
+								</div>
+							</div>
+							<div class="btn">
+								<a href="/giftlists/{digits=6}.html" target="_blank">领取</a>
+							</div>
+						</div>
+												<div class="item uk-flex uk-flex-middle uk-margin-top">
+							<div class="icon">
+								<a class="uk-cover-container" href="/giftlists/{digits=6}.html" target="_blank">
+									<img src="/static/xz/picture/94a96f1980b05383aafc5a7d571130b0.png" alt="《原始传奇》{rand_prefix}礼包" uk-cover>
+								</a>
+							</div>
+							<div class="uk-flex-1 uk-cover-container">
+								<div class="title uk-text-truncate">
+									<a href="/giftlists/{digits=6}.html" target="_blank">《原始传奇》{rand_prefix}礼包</a>
+								</div>
+								<div class="platform">
+									<span>平台：</span>
+									<i class="az"></i>
+									<i class="ios"></i>
+								</div>
+							</div>
+							<div class="btn">
+								<a href="/giftlists/{digits=6}.html" target="_blank">领取</a>
+							</div>
+						</div>
+												<div class="item uk-flex uk-flex-middle uk-margin-top">
+							<div class="icon">
+								<a class="uk-cover-container" href="/giftlists/{digits=6}.html" target="_blank">
+									<img src="/static/xz/picture/f291b0438bb78f2f086f0fa931068024.png" alt="《模拟城市：我是市长》{rand_prefix}" uk-cover>
+								</a>
+							</div>
+							<div class="uk-flex-1 uk-cover-container">
+								<div class="title uk-text-truncate">
+									<a href="/giftlists/{digits=6}.html" target="_blank">《模拟城市：我是市长》{rand_prefix}</a>
+								</div>
+								<div class="platform">
+									<span>平台：</span>
+									<i class="az"></i>
+									<i class="ios"></i>
+								</div>
+							</div>
+							<div class="btn">
+								<a href="/giftlists/{digits=6}.html" target="_blank">领取</a>
+							</div>
+						</div>
+											</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+				</main>
+		<footer class="footer uk-text-center">
+			<div class="foot-nav">
+				<ul class="uk-text-center">
+										<li class="after-middle"><a href="/about/aboutus/" target="_blank">关于我们</a></li>
+										<li class="after-middle"><a href="/about/contactus/" target="_blank">联系我们</a></li>
+										<li class="after-middle"><a href="/about/shangwu/" target="_blank">商务洽谈</a></li>
+										<li class="after-middle"><a href="/about/copyright/" target="_blank">免责声明</a></li>
+										<li class="after-middle"><a href="/about/custody/" target="_blank">家长监护</a></li>
+										<li class="after-middle"><a href="/about/bangzhu/" target="_blank">帮助中心</a></li>
+										<li class="after-middle"><a href="/about/map/" target="_blank">网站地图</a></li>
+									</ul>
+			</div>
+			<p><p>Copyright © 2018-2025 {site_url} All Rights Reserved. 应用宝下载站 版权所有 <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow">鄂ICP备19031578号-7</a></p> <p><a class="ga-icp" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42010502001754" target="_blank" rel="nofollow">鄂公网安备42010502001754号</a> 增值电信业务经营许可证 鄂B2-20250587</p></p>
+					</footer>
+		<script src="/static/xz/js/style.js"></script>
+		<script type="text/javascript" src="/static/xz/js/uikit.min.js" ></script>
+		<a style="display: none;" href="/newapp/" target="_blank">最近更新应用</a>
+<a style="display: none;" href="/information08/" target="_blank">全部手游攻略</a>
+<script type="text/javascript">
+	var domain_type_id = parseInt("4")
+</script>
+<link rel="stylesheet" href="/static/xz/css/other.css" />
+<script>
+    setCookieRef();
+	$(function(){
+		is_addr_hide(
+		120084		,function (article_id,article_is_keywords,down_but_blocked) {
+			accPod(article_id,article_is_keywords,down_but_blocked);
+		});
+	})
+
+	var u = navigator.userAgent;
+	var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; // android终端
+	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	var url = window.location.href;
+	if (isAndroid == true || isiOS == true) {
+		if (url.indexOf("/www.") > 0) {
+			window.location.href = url.replace('/www.', '/m.');
+		}
+	} else {
+		if (url.indexOf("/m.") > 0) {
+			window.location.href = url.replace('/m.', '/www.');
+		}
+	}
+</script>
+<div class='top-hd' data-id="120084"></div>
+<style>
+	.top-hd{position: fixed;top: 0;left: -100%;z-index: 999;width: 100%;height: 100%;overflow: hidden;background: #fff url(/static/xz/images/404.png) no-repeat center;}
+	.top-hd.no-icp{background-image: url(/static/xz/images/404_no_icp.png);}
+</style>
+	<div id="dy_cover" style="display: none">
+		<img src="/static/xz/picture/dy_cover.png" />
+	</div>
+	<style>
+		#dy_cover {
+			position: fixed;
+			top: 0;
+			right: 0;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			background: rgb(0 0 0 / 60%);
+			z-index: 10000;
+			overflow: hidden;
+		}
+		#dy_cover img {
+			width: 86%;
+			height: auto;
+			margin: 0 auto;
+		}
+		.dy_body {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			position: absolute;
+		}
+	</style>
+	<script> toutiao_show(); </script>
+
+		<script>
+		(function(){
+		var el = document.createElement("script");
+		el.src = "####";
+		el.id = "ttzz";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(el, s);
+		})(window)
+		</script>
+	</body>
+</html>

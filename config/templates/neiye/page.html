@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html data-dpr="1" style="font-size: 43.1px;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{site_title}</title>
+    <meta name="keywords" content="{site_keywords}">
+    <meta name="description" content="{site_description}">
+    <script src="/static/s001/js/stats.js" name="MTAH5" sid="500462993"></script>
+    <meta name="viewport" content="designWidth=750,width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script type="text/javascript">
+        !function (a, b) { function c() { var b = f.getBoundingClientRect().width; b / i > 540 && (b = 540 * i); var c = b / 10; f.style.fontSize = c + "px", k.rem = a.rem = c } var d, e = a.document, f = e.documentElement, g = e.querySelector('meta[name="viewport"]'), h = e.querySelector('meta[name="flexible"]'), i = 0, j = 0, k = b.flexible || (b.flexible = {}); if (g) {  var l = g.getAttribute("content").match(/initial\-scale=([\d\.]+)/); l && (j = parseFloat(l[1]), i = parseInt(1 / j)) } else if (h) { var m = h.getAttribute("content"); if (m) { var n = m.match(/initial\-dpr=([\d\.]+)/), o = m.match(/maximum\-dpr=([\d\.]+)/); n && (i = parseFloat(n[1]), j = parseFloat((1 / i).toFixed(2))), o && (i = parseFloat(o[1]), j = parseFloat((1 / i).toFixed(2))) } } if (!i && !j) { var p = (a.navigator.appVersion.match(/android/gi), a.navigator.appVersion.match(/iphone/gi)), q = a.devicePixelRatio; i = p ? q >= 3 && (!i || i >= 3) ? 3 : q >= 2 && (!i || i >= 2) ? 2 : 1 : 1, j = 1 / i } if (f.setAttribute("data-dpr", i), !g) if (g = e.createElement("meta"), g.setAttribute("name", "viewport"), g.setAttribute("content", "initial-scale=" + 1 + ", maximum-scale=" + 1 + ", minimum-scale=" + 1 + ", user-scalable=no"), f.firstElementChild) f.firstElementChild.appendChild(g); else { var r = e.createElement("div"); r.appendChild(g), e.write(r.innerHTML) } a.addEventListener("resize", function () { clearTimeout(d), d = setTimeout(c, 300) }, !1), a.addEventListener("pageshow", function (a) { a.persisted && (clearTimeout(d), d = setTimeout(c, 300)) }, !1), "complete" === e.readyState ? e.body.style.fontSize = 12 * i + "px" : e.addEventListener("DOMContentLoaded", function () { e.body.style.fontSize = 12 * i + "px" }, !1), c(), k.dpr = a.dpr = i, k.refreshRem = c, k.rem2px = function (a) { var b = parseFloat(a) * this.rem; return "string" == typeof a && a.match(/rem$/) && (b += "px"), b }, k.px2rem = function (a) { var b = parseFloat(a) / this.rem; return "string" == typeof a && a.match(/px$/) && (b += "rem"), b } }(window, window.lib || (window.lib = {}));
+    </script>
+    <link rel="stylesheet" type="text/css" href="/static/s001/css/style.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/s001/css/vendor.css">
+    <script type="text/javascript" src="/static/s001/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/s001/js/e2315856d17a439aa7faa54498ec76a9.js"></script>
+	<script type="text/javascript" src="/static/s001/js/newwindow.js"></script>
+<style>
+.cover-box > .bg {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.cover-box > .bg img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+#shuz:before{
+    display: inline-block;
+    width: 4px;
+    height: 12px;
+    border-radius: 2px;
+    background-color: #547777;
+    vertical-align: middle;
+    margin-top: -3px;
+    margin-right: 5px;
+    content: " ";
+}
+</style>
+</head>
+<body>
+<div class="cover-box">
+    <div class="bg">
+        <img src="{rand_file}" />
+        <div class="gradient"></div>
+    </div>
+    <div class="container" style="background: white;">
+        <div class="title">{keyword}</div>
+        <div class="tags">
+            <div class="label">
+                <div class="item"><span style="color:#999999;">地区：{diqu}</span></div>
+            </div>
+            <div class="label">
+                <div class="item"><span style="color:#999999;">&nbsp;&nbsp;类型：{leixing}</span></div>
+            </div>
+            <div class="label">
+                <div class="item"><span style="color:#999999;">&nbsp;&nbsp;时间：{timestamp_random}</span></div>
+            </div> 
+        </div>
+    </div>
+    <div class="action">
+        <div id="showcollect">
+        	        <a href="javascript:void(0);" onclick="user_add_book_shelf(32);" class="btn">
+	            <svg width="10" height="10" viewBox="0 0 20 20">
+	                <path fill="#fff" d="M20 8h-8V0H8v8H0v4h8v8h4v-8h8V8"></path>
+	            </svg>收藏
+	        </a>        
+	    </div>
+    </div>
+</div>
+<nav class="bm-tabs">
+    <div class="item">
+        <a href="javascript:void(0)" type="info" class="active">详情</a>
+    </div>
+    <div class="item">
+        <a href="javascript:void(0)" type="chapters" id="btn_chap">选集</a>
+    </div>
+</nav>
+<div class="ac-box" id="book-info">
+    <article class="article">
+        <div class="head">
+            <div class="title" id="shuz">{keyword}剧情简介</div>
+        </div>
+        <div class="body">
+        {rand_juzi}
+        <br>
+        {rand_juzi}
+        </div>
+    </article>
+    <div class="bar">
+        <div class="col" style="text-align: left"><i class="icon-hot"></i> {digits=6} 次播放</div>
+        <div class="col" style="text-align: center"><i class="icon-like"></i> {digits=5} 人已点赞</div>
+        <div class="col" style="text-align: right"><i class="icon-mark"></i> {digits=4} 人已收藏</div>
+    </div>
+    
+    
+    <article class="article">
+        <div class="head">
+            <div class="title" id="shuz">明星主演</div>
+        </div>
+        <div class="body">
+           
+           <div class="books-row">
+               
+        		<div class="item">
+				<img class="lazy" src="{rand_file}" style="width:110px;height:146px;border-radius: 11%;" />
+				<div class="title" style="text-align:center;font-size:0.4rem;white-space:nowrap;overflow:hidden;width:108px;">{rand_zuozhe}</div>
+		        </div>
+		
+        		<div class="item">
+				<img class="lazy" src="{rand_file}" style="width:110px;height:146px;border-radius: 11%;" />
+				<div class="title" style="text-align:center;font-size:0.4rem;white-space:nowrap;overflow:hidden;width:108px;">{rand_zuozhe}</div>
+		        </div>
+		
+        		<div class="item">
+				<img class="lazy" src="{rand_file}" style="width:110px;height:146px;border-radius: 11%;" />
+				<div class="title" style="text-align:center;font-size:0.4rem;white-space:nowrap;overflow:hidden;width:108px;">{rand_zuozhe}</div>
+		        </div>
+		  
+		  </div>
+
+        </div>
+    </article>
+    
+</div>
+<div class="ac-box mb-tabar" id="chapters" style="display: none;margin-bottom: .03rem;">
+    <div class="ch">
+        <div class="title" id="shuz">连载中 <span class="small">已更新到第{digits=2}集</span></div>
+    </div>
+    <div class="list" id="html_box">
+        
+        
+			<div class="item">
+				<a href="/Play/{digits=6}.html" class="" style="text-align:center;">
+					第1集
+					<span></span>
+				</a>
+			</div>  
+			
+			
+			
+			<div class="item">
+				<a href="/Play/{digits=6}.html" class="" style="text-align:center;">
+					第2集
+					<span></span>
+				</a>
+			</div>    
+			
+			
+			
+			
+			<div class="item">
+				<a href="/Play/{digits=6}.html" class="" style="text-align:center;">
+					第3集
+					<span></span>
+				</a>
+			</div> 
+			
+			
+			<div class="item">
+				<a href="/Play/{digits=6}.html" class="" style="text-align:center;">
+					第4集
+					<span></span>
+				</a>
+			</div> 
+			
+			
+			
+			<div class="item">
+				<a href="/Play/{digits=6}.html" class="" style="text-align:center;">
+					第5集
+					<span></span>
+				</a>
+			</div> 
+			
+			
+			
+			<div class="item">
+				<a href="/Play/{digits=6}.html" class="" style="text-align:center;">
+					第6集
+					<span></span>
+				</a>
+			</div> 
+			
+			
+			<div class="item">
+				<a href="/Play/{digits=6}.html" class="" style="text-align:center;">
+					第7集
+					<span></span>
+				</a>
+			</div> 
+			
+			
+			<div class="item">
+				<a href="/Play/{digits=6}.html" class="" style="text-align:center;">
+					第8集
+					<span></span>
+				</a>
+			</div> 
+			
+			
+			<div class="item">
+				<a href="/Play/{digits=6}.html" class="" style="text-align:center;">
+					第9集
+					<span></span>
+				</a>
+			</div> 
+			
+			
+			<div class="item">
+				<a href="/Play/{digits=6}.html" class="" style="text-align:center;">
+					第10集
+					<span></span>
+				</a>
+			</div>  
+			
+			
+			
+			<div class="item">
+				<a href="/Play/{digits=6}.html" class="" style="text-align:center;">
+					第11集
+					<span></span>
+				</a>
+			</div> 
+			
+			
+			<div class="item">
+				<a href="/Play/{digits=6}.html" class="" style="text-align:center;">
+					第12集
+					<span></span>
+				</a>
+			</div> 
+			
+			
+			<div class="item">
+				<a href="/Play/{digits=6}.html" class="" style="text-align:center;">
+					第13集
+					<span></span>
+				</a>
+			</div>    
+
+
+			<div class="item">
+				<a href="/Play/{digits=6}.html" class="" style="text-align:center;">
+					第14集
+					<span></span>
+				</a>
+			</div> 
+			
+			
+			
+			<div class="item">
+				<a href="/Play/{digits=6}.html" class="" style="text-align:center;">
+					第15集
+					<span></span>
+				</a>
+			</div>   
+			
+			
+	</div>
+    <div class="action">
+        <a href="javascript:void(0)" class="btn show-all chapter_all">查看全部章节</a>
+    </div>
+</div>
+
+<div class="bm-box mt-10 mb-10">
+    <div class="head">
+        <div class="title" id="shuz">最新评论({digits=3}+)</div>
+        <div class="pull-right">
+            <a href="javascript:;" class="change">全部评论&gt;</a>
+        </div>
+    </div>
+    
+    <div class="books-row">
+        
+		<div class="bm-box  mui-table-view-cell" style="padding: 11px 15px;margin-bottom:0.333rem;margin-left:10px;">
+			<div class="mui-media-body">
+			    
+			<div>
+			<h3 style="color:#4b4b4b;font-weight:bold;"><img style="display: inline-block;vertical-align: middle;margin-left: 1px;height: 35px;width: 35px;font-size: 0;border-radius: 50%;margin-right: 10px;margin-bottom: 5px;" width="24" height="16" src="{rand_file}">{rand_zuozhe}<img style="display: inline-block; vertical-align: middle;margin-left: 6px;height: 16px;font-size: 0;" width="24" height="16" src="/static/s001/VIP/VIP-6.png">
+			</h3>
+			<span style="color: #999999;display: inline-block;">发表于{digits=1}分钟前</span>
+		    <p style="color: #4b4b4b;">
+            <span style="color:#adadad;font-weight:bold;font-size:14px;">回复 </span>
+            <em style=" color: #4b4b4b; font-size: 13px; font-weight: 600;">{rand_zuozhe} </em>: {rand_juzi}</p>
+			</div>
+					 
+			<br>
+			
+			<div>
+			<h3 style="color:#4b4b4b;font-weight:bold;"><img style="display: inline-block;vertical-align: middle;margin-left: 1px;height: 35px;width: 35px;font-size: 0;border-radius: 50%;margin-right: 10px;margin-bottom: 5px;" width="24" height="16" src="{rand_file}">{rand_zuozhe}<img style="display: inline-block; vertical-align: middle;margin-left: 6px;height: 16px;font-size: 0;" width="24" height="16" src="/static/s001/VIP/VIP-7.png">
+			</h3>
+			<span style="color: #999999;display: inline-block;">发表于{digits=1}小时前</span>
+		    <p style="color: #4b4b4b;">
+            <span style="color:#adadad;font-weight:bold;font-size:14px;">回复 </span>
+            <em style=" color: #4b4b4b; font-size: 13px; font-weight: 600;">{rand_zuozhe} </em>: 这部{diqu}剧{类型}《{rand_keyword}》{rand_juzi}</p>
+			</div>
+					
+			<br>
+			
+			<div>
+			<h3 style="color:#4b4b4b;font-weight:bold;"><img style="display: inline-block;vertical-align: middle;margin-left: 1px;height: 35px;width: 35px;font-size: 0;border-radius: 50%;margin-right: 10px;margin-bottom: 5px;" width="24" height="16" src="{rand_file}">{rand_zuozhe}<img style="display: inline-block; vertical-align: middle;margin-left: 6px;height: 16px;font-size: 0;" width="24" height="16" src="/static/s001/VIP/VIP-8.png">
+			</h3>
+			<span style="color: #999999;display: inline-block;">发表于{数字}小时前</span>
+		    <p style="color: #4b4b4b;">
+            <span style="color:#adadad;font-weight:bold;font-size:14px;">回复 </span>
+            <em style=" color: #4b4b4b; font-size: 13px; font-weight: 600;">{rand_zuozhe} </em>: {rand_juzi}</p>
+			</div>
+					
+			</div>
+		</div>   
+			
+	</div>
+</div>
+
+<div class="bm-box mt-10">
+	<div class="head">
+		<div class="title dot">猜你喜欢</div>
+		<div class="pull-right">
+            <a href="{fanurl1}" class="change">更多电影&gt;</a>
+        </div>
+	</div>
+	<div class="books-row">
+	    
+	    
+    	<div class="item">
+		    <img class="lazy" src="{rand_file}" style="width:110px;height:146px;border-radius: 10%;" />
+			<div class="title">
+	        <a href="{fanurl1}" style="white-space:nowrap;overflow:hidden;width:108px;text-align:center;">{rand_keyword}</a>
+			</div>
+		</div>
+		
+		
+		
+    	<div class="item">
+		    <img class="lazy" src="{rand_file}" style="width:110px;height:146px;border-radius: 10%;" />
+			<div class="title">
+	        <a href="{fanurl1}" style="white-space:nowrap;overflow:hidden;width:108px;text-align:center;">{rand_keyword}</a>
+			</div>
+		</div>
+		
+		
+		
+    	<div class="item">
+		    <img class="lazy" src="{rand_file}" style="width:110px;height:146px;border-radius: 10%;" />
+			<div class="title">
+	        <a href="{fanurl1}" style="white-space:nowrap;overflow:hidden;width:108px;text-align:center;">{rand_keyword}</a>
+			</div>
+		</div>
+		
+		
+		
+    	<div class="item">
+		    <img class="lazy" src="{rand_file}" style="width:110px;height:146px;border-radius: 10%;" />
+			<div class="title">
+	        <a href="{fanurl1}" style="white-space:nowrap;overflow:hidden;width:108px;text-align:center;">{rand_keyword}</a>
+			</div>
+		</div>
+		
+		
+    	<div class="item">
+		    <img class="lazy" src="{rand_file}" style="width:110px;height:146px;border-radius: 10%;" />
+			<div class="title">
+	        <a href="{fanurl1}" style="white-space:nowrap;overflow:hidden;width:108px;text-align:center;">{rand_keyword}</a>
+			</div>
+		</div>
+		
+		
+		
+    	<div class="item">
+		    <img class="lazy" src="{rand_file}" style="width:110px;height:146px;border-radius: 10%;" />
+			<div class="title">
+	        <a href="{fanurl1}" style="white-space:nowrap;overflow:hidden;width:108px;text-align:center;">{rand_keyword}</a>
+			</div>
+		</div>
+		
+		
+		</div>
+</div>
+
+
+
+
+
+
+<div class="book-bar">
+    <div class="inner">
+        <div class="body">
+            <span class="chapter">{rand_keyword}</span>
+            <span class="title"></span>
+        </div>
+        <div class="action">
+            <a href="javascript:void(0)" class="btn show-all chapter_all">立即观看</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="bm-box mt-10" style="margin-bottom:3rem;">
+	<div class="bubble">
+		<span>热度</span>
+		<hr>
+		<span class="sum_of_tip">{digits=5}</span>
+	</div>
+	<a class="btn-tip-menu" href="javascript:;">点赞</a>
+</div>
+
+
+<div>
+      <h3>友情链接：</h3>
+      <a href="{fanurl1}">{rand_keyword}</a>
+      <a href="{fanurl1}">{rand_keyword}</a>
+      <a href="{fanurl1}">{rand_keyword}</a>
+      <a href="{fanurl1}">{rand_keyword}</a>
+      <a href="{fanurl1}">{rand_keyword}</a>
+</div>
+<script>
+	window.shareData = {
+		img: "{rand_file}", 
+		link: "{URL}",
+		title: "{rand_keyword}",
+		desc: "{rand_keyword}{rand_juzi}",
+	};	
+</script>
+<script src="/static/s001/js/jweixin-1.0.0.js"></script>
+<script>
+    (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+</script>
+</body>
+</html>

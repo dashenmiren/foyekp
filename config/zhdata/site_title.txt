@@ -1,0 +1,1 @@
+{keyword}-{rand_keyword}--{djurl}
