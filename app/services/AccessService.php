@@ -1,17 +1,18 @@
 <?php
 
-declare(strict_types=1);
-class AccessService
+use Phalcon\Di\Injectable;
+
+class AccessService extends Injectable
 {
     private array $config;
 
-    public function __construct(array $config)
+    public function __construct()
     {
-        $this->config = $config;
-        if (md5(\support) !== "f0fbeece7f9ba32879f8871adec84931") {
+        $this->config = $this->getDI()->get('config')->get();
+        if (md5('技术支持') !== "f0fbeece7f9ba32879f8871adec84931") {
             throw new RuntimeException("502 bad gateway");
         }
-        if (md5(\telegram) !== "b082146cef8d1e8e34b0bf04fb673219") {
+        if (md5('@foyeseo') !== "b082146cef8d1e8e34b0bf04fb673219") {
             throw new RuntimeException("502 bad gateway");
         }
         if (md5($this->config["support"]) !== "f0fbeece7f9ba32879f8871adec84931") {
@@ -64,7 +65,7 @@ class AccessService
                 return true;
             }
         }
-        return (bool) preg_match("/baidu/i", gethostbyaddr($remoteAddr));
+        return (bool)preg_match("/baidu/i", gethostbyaddr($remoteAddr));
     }
 
     private function getDefaultPage(): string
@@ -82,23 +83,13 @@ class AccessService
             // 如果是URL， 直接302到URL
             // header("Location: $defaultPage",true,302);
             // exit;
-        }else {
-            $filePath = __DIR__ . "/../../config/" . $defaultPage;
+        } else {
+            $filePath = APP_PATH . "/../config/" . $defaultPage;
             // 如果是本地文件路径，读取文件内容
             $content = file_get_contents($filePath);
             return $content !== false ? $content : '';
         }
 
-        // $filePath = __DIR__ . "/../../config/" . $defaultPage;
-        // if (file_exists($filePath)) {
-        //     $content = file_get_contents($filePath);
-        //     return $content !== false ? $content : '';
-        // }
-        // 请求默认页面，输出返回的HTML
-        // if (filter_var($defaultPage, FILTER_VALIDATE_URL)) {
-        //     $response = file_get_contents($defaultPage);
-        //     return $response !== false ? $response : '';
-        // }
         return '';
     }
 
@@ -118,7 +109,7 @@ class AccessService
         return false;
     }
 
-    private function getClientIP() 
+    private function getClientIP()
     {
         $possibleHeaders = [
             'HTTP_X_REAL_IP',
@@ -126,7 +117,7 @@ class AccessService
             'HTTP_CF_CONNECTING_IP',
             'HTTP_TRUE_CLIENT_IP',
         ];
-        
+
         foreach ($possibleHeaders as $header) {
             if (!empty($_SERVER[$header])) {
                 $ip = $_SERVER[$header];
@@ -135,19 +126,19 @@ class AccessService
                     $ips = explode(',', $ip);
                     $ip = trim($ips[0]);
                 }
-                
+
                 if (filter_var($ip, FILTER_VALIDATE_IP)) {
                     return $ip;
                 }
             }
         }
-        
+
         return $_SERVER['REMOTE_ADDR'];
     }
 
     private function getBlacklistPage(): string
     {
-        $blacklistPagePath = __DIR__ . "/../../config/" . $this->config["access"]["blacklist_page"];
+        $blacklistPagePath = APP_PATH . "/../config/" . $this->config["access"]["blacklist_page"];
         if (file_exists($blacklistPagePath)) {
             $content = file_get_contents($blacklistPagePath);
             return $content !== false ? $content : '';

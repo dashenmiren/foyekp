@@ -1,84 +1,105 @@
 <?php
 
-declare(strict_types=1);
-const support = '技术支持';
-const telegram = '@foyeseo';
-// 基础设置
-ini_set('memory_limit', '128M');
-set_time_limit(30);
-header("Content-type: text/html; charset=utf-8");
-date_default_timezone_set('Asia/Shanghai');
-error_reporting(E_ERROR | E_PARSE);
-ini_set("display_errors", "Off");
-// 启用输出缓冲
-ob_start();
+use Phalcon\Di\FactoryDefault;
+use Phalcon\Loader;
+use Phalcon\Mvc\Application;
+use Phalcon\Mvc\View;
+use Phalcon\Url;
+
+define('BASE_PATH', dirname(__DIR__));
+define('APP_PATH', BASE_PATH . '/app');
+
+$loader = new Loader();
+$loader->registerDirs(
+    [
+        APP_PATH . '/controllers/',
+        APP_PATH . '/models/',
+    ]
+);
+$loader->register();
+
+$container = new FactoryDefault();
+
+$loader->registerClasses(
+    [
+        'ConfigService' => APP_PATH . '/services/ConfigService.php',
+        'RedisService' => APP_PATH . '/services/RedisService.php',
+        'CacheService' => APP_PATH . '/services/CacheService.php',
+        'AccessService' => APP_PATH . '/services/AccessService.php',
+        'SiteService' => APP_PATH . '/services/SiteService.php',
+        'TemplateEngine' => APP_PATH . '/services/TemplateEngine.php',
+        'Context' => APP_PATH . '/services/Context.php',
+    ]
+);
+
+$container->set(
+    'config',
+    function () {
+        return new ConfigService();
+    }
+);
+
+$container->set(
+    'redis',
+    function () {
+        return new RedisService();
+    }
+);
+
+$container->set(
+    'cache',
+    function () {
+        return new CacheService();
+    }
+);
+
+$container->set(
+    'site',
+    function () {
+        return new SiteService();
+    }
+);
+
+$container->set(
+    'templateEngine',
+    function () {
+        return new TemplateEngine();
+    }
+);
+
+$container->set(
+    'context',
+    function () {
+        return new Context();
+    }
+);
+
+$container->set(
+    'view',
+    function () {
+        $view = new View();
+        $view->setViewsDir(APP_PATH . '/views/');
+        return $view;
+    }
+);
+
+$container->set(
+    'url',
+    function () {
+        $url = new Url();
+        $url->setBaseUri('/');
+        return $url;
+    }
+);
+
+$application = new Application($container);
 
 try {
-    // 自动加载类
-    spl_autoload_register(function ($class) {
-        // 处理命名空间路径
-        $parts = explode('\\', str_replace('\\', '/', $class));
-        $className = array_pop($parts);
-        
-        // 检查是否是服务类
-        if (strpos($class, 'Service') !== false) {
-            $file = __DIR__ . "/../core/Services/{$className}.php";
-        } else {
-            $file = __DIR__ . "/../core/{$className}.php";
-        }
-        
-        if (!file_exists($file)) {
-            throw new RuntimeException("Class not found: {$class} (tried: {$file})");
-        }
-        
-        require_once $file;
-    });
+    $response = $application->handle(
+        $_SERVER["REQUEST_URI"]
+    );
 
-    $context = new Context();
-    
-    // 检查访问权限
-    if (($page = $context->checkAccess()) !== null) {
-        echo $page;
-        exit;
-    }
-    
-    // 检查页面缓存
-    if ($cached = $context->getPageCache()) {
-        echo $cached;
-        exit;
-    }
-    
-    // 渲染模板
-    $content = (new TemplateEngine($context))->render();
-    $context->setPageCache($content);
-    echo $content;
-    
-} catch (Throwable $e) {
-    // 错误日志记录
-    error_log(sprintf(
-        "Error: %s\nFile: %s\nLine: %d\nTrace: %s",
-        $e->getMessage(),
-        $e->getFile(),
-        $e->getLine(),
-        $e->getTraceAsString()
-    ));
-    
-    // 清理任何已有输出
-    if (ob_get_level() > 0) {
-        ob_clean();
-    }
-    
-    // 错误响应
-    http_response_code(500);
-    echo '错误: ' . $e->getMessage() . "<br>";
-    echo '文件: ' . $e->getFile() . "<br>";
-    echo '行号: ' . $e->getLine() . "<br>";
-    echo '堆栈: ' . $e->getTraceAsString() . "<br>";
-    echo '系统繁忙,请稍后再试';
-} finally {
-    // 确保所有输出缓冲都被清理
-    while (ob_get_level() > 0) {
-        ob_end_flush();
-    }
-    flush();
+    $response->send();
+} catch (\Exception $e) {
+    echo 'Exception: ', $e->getMessage();
 }

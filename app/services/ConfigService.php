@@ -1,39 +1,44 @@
 <?php
-// @foyeseo
-declare(strict_types=1);
 
-class ConfigService {
+use Phalcon\Di\Injectable;
+
+class ConfigService extends Injectable
+{
     private const REQUIRED = [
         'redis.host', 'redis.port', 'redis.databases.page_cache',
         'page_cache.enabled', 'page_cache.ttl'
     ];
-    
+
     private array $config;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->load();
     }
-    
-    public function get(): array {
+
+    public function get(): array
+    {
         return $this->config;
     }
-    
-    private function load(): void {
-        $file = __DIR__ . '/../../config/config.php';
+
+    private function load(): void
+    {
+        $file = APP_PATH . '/../config/config.php';
         if (!file_exists($file)) {
             throw new RuntimeException("Config not found");
         }
-        
+
         $config = require $file;
         if (!is_array($config)) {
             throw new RuntimeException("Invalid config");
         }
-        
+
         $this->validate($config);
         $this->config = $config;
     }
-    
-    private function validate(array $config): void {
+
+    private function validate(array $config): void
+    {
         foreach (self::REQUIRED as $key) {
             $value = $config;
             foreach (explode('.', $key) as $part) {
@@ -44,4 +49,4 @@ class ConfigService {
             }
         }
     }
-} 
+}

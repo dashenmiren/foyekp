@@ -1,32 +1,27 @@
 <?php
-// @foyeseo
-declare(strict_types=1);
 
-/**
- * 模板引擎类 - 处理模板渲染和标签替换 (v2 - Multi-pass Architecture)
- */
-class TemplateEngine
+use Phalcon\Di\Injectable;
+
+class TemplateEngine extends Injectable
 {
     // 目录常量
-    private const TEMPLATE_DIR = __DIR__ . '/../config/templates/';
-    private const DATA_DIR = __DIR__ . '/../config/data/';
-    private const ZHDATA_DIR = __DIR__ . '/../config/zhdata/';
-    private const FILES_DIR = __DIR__ . '/../public/static/files/';
-    private const FILES_DIR1 = __DIR__ . '/../public/static/files1/';
+    private const TEMPLATE_DIR = APP_PATH . '/views/templates/';
+    private const DATA_DIR = APP_PATH . '/../config/data/';
+    private const ZHDATA_DIR = APP_PATH . '/../config/zhdata/';
+    private const FILES_DIR = APP_PATH . '/../public/static/files/';
+    private const FILES_DIR1 = APP_PATH . '/../public/static/files1/';
 
     // 类属性
     private string $siteId;
-    private Context $context;
 
     // 分阶段的标签处理器
     private array $loopTagProcessor = [];
     private array $combinationTagProcessors = [];
     private array $simpleTagProcessors = [];
 
-    public function __construct(Context $context)
+    public function __construct()
     {
         $this->siteId = hash('crc32b', realpath($_SERVER['DOCUMENT_ROOT']));
-        $this->context = $context;
         $this->initializeTagProcessors();
     }
 
@@ -37,7 +32,7 @@ class TemplateEngine
     private function initializeTagProcessors(): void
     {
         $this->loopTagProcessor = [
-            'loop' => [ 
+            'loop' => [
                 'pattern' => '/{foye\s+num=(\d+)(?:-(\d+))?\s*}(.*?){\/foye}/s',
                 'callback' => [$this, 'expandLoopTag']
             ]
@@ -86,10 +81,11 @@ class TemplateEngine
         ];
 
         $this->simpleTagProcessors['local_data'] = [
-            'pattern' => '/{([a-zA-Z_][a-zA-Z0-9_]*)(\d+)?}/', 
+            'pattern' => '/{([a-zA-Z_][a-zA-Z0-9_]*)(\d+)?}/',
             'callback' => [$this, 'processLocalDataTagCallback']
         ];
     }
+
     /**
      * 渲染模板 (主入口)
      */
@@ -132,7 +128,9 @@ class TemplateEngine
     private function executeSinglePass(string $content, array $processors): string
     {
         foreach ($processors as $processor) {
-            if (strpos($content, '{') === false) break;
+            if (strpos($content, '{') === false) {
+                break;
+            }
             $content = preg_replace_callback($processor['pattern'], $processor['callback'], $content);
         }
         return $content;
@@ -186,7 +184,7 @@ class TemplateEngine
         $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         return empty($lines) ? '' : $lines[array_rand($lines)];
     }
-    
+
     /**
      * 处理本地数据标签 (包括普通和rand_)
      */
@@ -194,7 +192,7 @@ class TemplateEngine
     {
         try {
             $isRandom = str_starts_with($matches[0], '{rand_');
-            
+
             $baseTag = $isRandom ? $matches[1] : $matches[1];
             $suffix = $isRandom ? ($matches[2] ?? '') : ($matches[2] ?? '');
 
@@ -202,8 +200,8 @@ class TemplateEngine
                 return $matches[0];
             }
 
-            $config = $this->context->getConfig();
-            $redis = $this->context->getRedis();
+            $config = $this->getDI()->get('config')->get();
+            $redis = $this->getDI()->get('redis')->getRedis();
             $redis->select($config['redis']['databases']['local_data']);
 
             $redisKey = "site:{$this->siteId}:local_data:{$baseTag}";
@@ -214,8 +212,8 @@ class TemplateEngine
             if (!$isRandom && $keywordGdMode === 1) {
                 // 模式1：yumingguding=1
                 $cacheKey = "{$baseTag}:" . md5(($_SERVER['HTTP_HOST'] ?? '') . ($_SERVER['REQUEST_URI'] ?? '')) . ':' . $suffix;
-                if ($this->context->hasCache($cacheKey)) {
-                    $value = $this->context->getCache($cacheKey);
+                if ($this->getDI()->get('context')->hasCache($cacheKey)) {
+                    $value = $this->getDI()->get('context')->getCache($cacheKey);
                 } else {
                     $keywords = $redis->sMembers($redisKey);
                     if (!empty($keywords)) {
@@ -224,17 +222,17 @@ class TemplateEngine
                         $index = hexdec(substr($seed, 0, 8)) % count($keywords);
                         $value = $keywords[$index];
                     }
-                    $this->context->setCache($cacheKey, $value ?: '');
+                    $this->getDI()->get('context')->setCache($cacheKey, $value ?: '');
                 }
             } else {
                 // 模式0：yumingguding=0 或 rand_ 标签
                 if (!$isRandom) { // {tag} - 同一页面内固定
                     $cacheKey = "local_data:{$baseTag}{$suffix}";
-                    if (!$this->context->hasCache($cacheKey)) {
+                    if (!$this->getDI()->get('context')->hasCache($cacheKey)) {
                         $value = $redis->sRandMember($redisKey) ?: '';
-                        $this->context->setCache($cacheKey, $value);
+                        $this->getDI()->get('context')->setCache($cacheKey, $value);
                     }
-                    $value = $this->context->getCache($cacheKey);
+                    $value = $this->getDI()->get('context')->getCache($cacheKey);
                 } else { // {rand_tag} - 每次都随机
                     $value = $redis->sRandMember($redisKey) ?: '';
                 }
@@ -257,8 +255,12 @@ class TemplateEngine
         $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
         $result = '';
         switch ($type) {
-            case 1: $result = $host; break;
-            case 2: $result = $host . $uri; break;
+            case 1:
+                $result = $host;
+                break;
+            case 2:
+                $result = $host . $uri;
+                break;
             case 0:
             default:
                 $parts = explode('.', $host);
@@ -283,6 +285,7 @@ class TemplateEngine
         }
         return $result;
     }
+
     private function processGeneratorCallback(array $matches): string
     {
         $type = $matches[1];
@@ -301,6 +304,7 @@ class TemplateEngine
         $length = mt_rand($min_length, $max_length);
         return $this->processGeneratorTags($type, $length);
     }
+
     private function processGeneratorTags(string $type, int $length): string
     {
         $charSets = [
@@ -311,7 +315,9 @@ class TemplateEngine
             'alpha_upper' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
             'alpha_lower' => 'abcdefghijklmnopqrstuvwxyz'
         ];
-        if (!isset($charSets[$type])) return '';
+        if (!isset($charSets[$type])) {
+            return '';
+        }
 
         $characterSet = $charSets[$type];
         if (strlen($characterSet) === 0) {
@@ -330,20 +336,26 @@ class TemplateEngine
         }
         return false;
     }
+
     private function syncLocalDataToRedis(): self
     {
         try {
-            $redis = $this->context->getRedis();
-            $redis->select($this->context->getConfig()['redis']['databases']['local_data']);
+            $redis = $this->getDI()->get('redis')->getRedis();
+            $config = $this->getDI()->get('config')->get();
+            $redis->select($config['redis']['databases']['local_data']);
             foreach (glob(self::DATA_DIR . '#*#[01].txt') as $file) {
-                if (!preg_match('/#(.+)#[01]\.txt/', basename($file), $matches)) continue;
+                if (!preg_match('/#(.+)#[01]\.txt/', basename($file), $matches)) {
+                    continue;
+                }
                 $tag = $matches[1];
                 $key = "site:{$this->siteId}:local_data:{$tag}";
                 $timeKey = "{$key}:updated_at";
                 $fileTime = filemtime($file);
                 if (!$redis->exists($key) || !($redisTime = $redis->get($timeKey)) || $fileTime > (int)$redisTime) {
                     $lines = array_filter(explode("\n", file_get_contents($file) ?: ''));
-                    if (empty($lines)) continue;
+                    if (empty($lines)) {
+                        continue;
+                    }
                     $redis->exists($key) && $redis->del($key);
                     $redis->sAddArray($key, $lines);
                     $redis->set($timeKey, $fileTime);
@@ -354,9 +366,10 @@ class TemplateEngine
         }
         return $this;
     }
+
     private function loadTemplate(): string
     {
-        $config = $this->context->getConfig();
+        $config = $this->getDI()->get('config')->get();
         $neiyeMode = $config['nykg']['neiye'] ?? 0;
         $selectionMode = $config['access']['yumingguding'] ?? 0;
         $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -372,7 +385,7 @@ class TemplateEngine
                 $fallbackDir = self::TEMPLATE_DIR . 'shouye/';
                 $templateFiles = glob($fallbackDir . '*.html');
                 if (empty($templateFiles)) {
-                     throw new RuntimeException("No template files found in 'neiye' or fallback 'shouye' directory.");
+                    throw new RuntimeException("No template files found in 'neiye' or fallback 'shouye' directory.");
                 }
             } else {
                 throw new RuntimeException("No template files found in directory: " . $targetDir);
@@ -395,11 +408,13 @@ class TemplateEngine
         }
         return file_get_contents($templatePath) ?: '';
     }
+
     private function processArticleContent(string $content): string
     {
         try {
-            $redis = $this->context->getRedis();
-            $redis->select($this->context->getConfig()['redis']['databases']['article']);
+            $redis = $this->getDI()->get('redis')->getRedis();
+            $config = $this->getDI()->get('config')->get();
+            $redis->select($config['redis']['databases']['article']);
             if (strpos($content, '{article_title}') !== false || strpos($content, '{article_content}') !== false) {
                 $articleNum = (int)$redis->get('article_num');
                 if ($articleNum > 0) {
@@ -416,56 +431,77 @@ class TemplateEngine
         }
         return $content;
     }
+
     private function processRandFile(): string
     {
         try {
             $cacheKey = 'files_list';
             $docRoot = realpath($_SERVER['DOCUMENT_ROOT']);
-            if (!$this->context->hasCache($cacheKey)) {
+            if (!$this->getDI()->get('context')->hasCache($cacheKey)) {
                 $filesDir = realpath(self::FILES_DIR);
-                if (!$filesDir) return '';
+                if (!$filesDir) {
+                    return '';
+                }
                 $files = glob($filesDir . '/*.*');
-                if (empty($files)) return '';
-                $this->context->setCache($cacheKey, $files);
+                if (empty($files)) {
+                    return '';
+                }
+                $this->getDI()->get('context')->setCache($cacheKey, $files);
             }
-            $files = $this->context->getCache($cacheKey);
-            if (empty($files)) return '';
+            $files = $this->getDI()->get('context')->getCache($cacheKey);
+            if (empty($files)) {
+                return '';
+            }
             $file = $files[array_rand($files)];
             return str_replace($docRoot, '', $file);
         } catch (Throwable $e) {
             return '';
         }
     }
+
     private function processRandFile1(): string
     {
         try {
             $cacheKey = 'files_list1';
             $docRoot = realpath($_SERVER['DOCUMENT_ROOT']);
-            if (!$this->context->hasCache($cacheKey)) {
+            if (!$this->getDI()->get('context')->hasCache($cacheKey)) {
                 $filesDir = realpath(self::FILES_DIR1);
-                if (!$filesDir) return '';
+                if (!$filesDir) {
+                    return '';
+                }
                 $files = glob($filesDir . '/*.*');
-                if (empty($files)) return '';
-                $this->context->setCache($cacheKey, $files);
+                if (empty($files)) {
+                    return '';
+                }
+                $this->getDI()->get('context')->setCache($cacheKey, $files);
             }
-            $files = $this->context->getCache($cacheKey);
-            if (empty($files)) return '';
+            $files = $this->getDI()->get('context')->getCache($cacheKey);
+            if (empty($files)) {
+                return '';
+            }
             $file = $files[array_rand($files)];
             return str_replace($docRoot, '', $file);
         } catch (Throwable $e) {
             return '';
         }
     }
+
     private function processTimestampTags(array $matches): string
     {
         $type = $matches[1];
         switch ($type) {
-            case 'year': return date('Y');
-            case 'month': return date('m');
-            case 'day': return date('d');
-            case 'hour': return date('H');
-            case 'minute': return date('i');
-            case 'second': return date('s');
+            case 'year':
+                return date('Y');
+            case 'month':
+                return date('m');
+            case 'day':
+                return date('d');
+            case 'hour':
+                return date('H');
+            case 'minute':
+                return date('i');
+            case 'second':
+                return date('s');
             case 'random':
                 $randomTime = time() - mt_rand(0, 86400);
                 return date('Y-m-d H:i:s', $randomTime);
